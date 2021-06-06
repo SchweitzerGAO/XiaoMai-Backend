@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\gaoyangfan\\Desktop\\COURSE_WORK_Bachelor\\实践汇总\\Semester_4\\Database Project\\DBPrincipleProject\\APIs\\APIs\\APIs.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\gaoyangfan\\Desktop\\COURSE_WORK_Bachelor\\实践汇总\\Semester_4\\Database Project\\DBPrincipleProject\\APIs\\APIs\\APIs.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gaoyangfan\\Desktop\\COURSE_WORK_Bachelor\\实践汇总\\Semester_4\\Database Project\\DBPrincipleProject\\APIs\\APIs\\APIs.csproj",
+        "projectName": "APIs",
+        "projectPath": "C:\\Users\\gaoyangfan\\Desktop\\COURSE_WORK_Bachelor\\实践汇总\\Semester_4\\Database Project\\DBPrincipleProject\\APIs\\APIs\\APIs.csproj",
+        "packagesPath": "C:\\Users\\gaoyangfan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gaoyangfan\\Desktop\\COURSE_WORK_Bachelor\\实践汇总\\Semester_4\\Database Project\\DBPrincipleProject\\APIs\\APIs\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\gaoyangfan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.10.14, )"
+            },
+            "Oracle.ManagedDataAccess.Core": {
+              "target": "Package",
+              "version": "[2.19.110, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
