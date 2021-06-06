@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>APIs</name>
+    </assembly>
+    <members>
+        <member name="M:APIs.Controllers.VIPController.newVip(System.Nullable{System.Int64})">
+            <summary>
+            添加VIP信息
+            </summary>
+            <param name="customerId">顾客ID,主码</param>
+            <response code="200">插入成功</response>
+            <response code="400">插入失败</response>
+            <returns>测试</returns>
+        </member>
+    </members>
+</doc>
