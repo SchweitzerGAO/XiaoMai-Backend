@@ -77,7 +77,7 @@ namespace APIs.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult deleteComment(long? commId)
+        public IActionResult deleteComment([FromBody] long? commId)
         {
             if(commId is null)
             {
@@ -117,7 +117,7 @@ namespace APIs.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult getCommentByShow(long? showId)
+        public IActionResult getCommentByShow([FromBody] long? showId)
         {
             if(showId is null)
             {
