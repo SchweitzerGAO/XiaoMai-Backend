@@ -4,7 +4,9 @@
     public class VIP
     {
         public long customerId { get; set; }  // 顾客ID
-        public long point { get; set; }       // 积分
+        public double point { get; set; }     // 积分
+        public int level { get; set; }
+        public double discount { get; set; }
 
     }
 }
