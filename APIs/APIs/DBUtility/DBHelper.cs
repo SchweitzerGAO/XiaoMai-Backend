@@ -25,6 +25,7 @@ namespace APIs.DBUtility
             OracleDataAdapter oracleDataAdapter = new OracleDataAdapter(cmd);           
             DataSet ds = new DataSet();
             oracleDataAdapter.Fill(ds);
+            conn.Close();
             return ds.Tables[0];
             //using SqlConnection conn = new SqlConnection(ConnectionString);
             //sqlDataAdapter.Fill(ds);
@@ -38,15 +39,16 @@ namespace APIs.DBUtility
             conn.Open();
             OracleCommand cmd = new OracleCommand(cmdText, conn);
             cmd.Parameters.AddRange(oraParameters);
-            // cmd.ExecuteNonQuery();
-            return cmd.ExecuteNonQuery();
+            int res = cmd.ExecuteNonQuery();
+            conn.Close();
+            return res;
         }
-        public int ExecuteCount(string tableName)
+        public ulong ExecuteCount(string tableName)
         {
-            int res;
+            ulong res;
             string query = "SELECT COUNT(ID) COUNT FROM " + tableName;
             DataTable ds = ExecuteTable(query);
-            res = int.Parse(ds.Rows[0]["COUNT"].ToString());
+            res = ulong.Parse(ds.Rows[0]["COUNT"].ToString());
             return res;
         }
     }

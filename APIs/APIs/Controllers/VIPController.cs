@@ -15,17 +15,17 @@ namespace APIs.Controllers
         /// <param name="customerId">顾客ID,主码</param>
         /// <response code="200">插入成功</response>
         /// <response code="400">插入失败</response>
-        /// <returns>测试</returns>
+        /// <returns></returns>
         [HttpPost("{customerId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
 
-        public ActionResult newVip(long? customerId)
+        public IActionResult newVip(long? customerId)
         {
             // 非法输入
             if (customerId is null)
             {
-                return BadRequest();
+                return BadRequest("顾客ID为空");
             }
             // SQL语句初始化
             DBHelper dbHelper = new DBHelper();
@@ -44,16 +44,16 @@ namespace APIs.Controllers
                 int res = dbHelper.ExecuteNonQuery(insert, parametersForInsert);
                 if (res > 0)
                 {
-                    return Ok();
+                    return Ok("成功");
                 }
                 else
                 {
-                    return BadRequest();
+                    return NotFound("未找到信息");
                 }
             }
             catch (OracleException)
             {
-                return BadRequest();
+                return BadRequest("数据库请求错误");
             }
         }
         // 更新VIP积分，无需接口化，因为用户不会显式调用这个函数。
@@ -81,6 +81,7 @@ namespace APIs.Controllers
                 throw;
             }
         }
+        public static VIP 
 
     }
 }

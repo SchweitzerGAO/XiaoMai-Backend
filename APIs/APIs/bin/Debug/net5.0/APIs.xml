@@ -4,6 +4,35 @@
         <name>APIs</name>
     </assembly>
     <members>
+        <member name="M:APIs.Controllers.CommentController.newComment(APIs.Models.Comment)">
+            <summary>
+            添加评论
+            </summary>
+            <param name="comment">评论信息（Json格式）</param>
+            <response code="200">插入成功</response>
+            <response code="400">插入失败</response>
+            <returns></returns>
+        </member>
+        <member name="M:APIs.Controllers.CommentController.deleteComment(System.Nullable{System.Int64})">
+            <summary>
+            删除评论
+            </summary>
+            <param name="commId">评论ID</param>
+            <response code="200">删除成功</response>
+            <response code="400">删除失败</response>
+            <response code="404">未找到信息</response>
+            <returns></returns>
+        </member>
+        <member name="M:APIs.Controllers.CommentController.getCommentByShow(System.Nullable{System.Int64})">
+            <summary>
+            通过演出ID获取评论
+            </summary>
+            <param name="showId">演出ID</param>
+            <response code="200">删除成功</response>
+            <response code="400">删除失败</response>
+            <response code="404">未找到信息</response>
+            <returns></returns>
+        </member>
         <member name="M:APIs.Controllers.VIPController.newVip(System.Nullable{System.Int64})">
             <summary>
             添加VIP信息
@@ -11,7 +40,7 @@
             <param name="customerId">顾客ID,主码</param>
             <response code="200">插入成功</response>
             <response code="400">插入失败</response>
-            <returns>测试</returns>
+            <returns></returns>
         </member>
     </members>
 </doc>
