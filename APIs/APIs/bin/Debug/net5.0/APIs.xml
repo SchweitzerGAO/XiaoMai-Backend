@@ -37,7 +37,7 @@
             <summary>
             添加VIP信息
             </summary>
-            <param name="customerId">顾客ID,主码</param>
+            <param name="customerId">顾客ID</param>
             <response code="200">插入成功</response>
             <response code="400">插入失败</response>
             <returns></returns>
