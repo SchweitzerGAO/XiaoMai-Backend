@@ -4,6 +4,15 @@
         <name>APIs</name>
     </assembly>
     <members>
+        <member name="M:APIs.Controllers.AllShowController.getAllShows">
+            <summary>
+            查找所有演出
+            </summary>
+            <response code="404">暂无演出</response>
+            <response code="400">数据库请求错误</response>
+            <response code="200">查找成功</response>
+            <returns>所有演出信息</returns>
+        </member>
         <member name="M:APIs.Controllers.CommentController.newComment(APIs.Models.Comment)">
             <summary>
             添加评论
@@ -11,9 +20,9 @@
             <param name="comment">评论信息（Json格式）</param>
             <response code="200">插入成功</response>
             <response code="400">插入失败</response>
-            <returns></returns>
+            <returns>状态码并信息</returns>
         </member>
-        <member name="M:APIs.Controllers.CommentController.deleteComment(System.Nullable{System.Int64})">
+        <member name="M:APIs.Controllers.CommentController.deleteComment(System.Nullable{System.UInt64})">
             <summary>
             删除评论
             </summary>
@@ -21,17 +30,14 @@
             <response code="200">删除成功</response>
             <response code="400">删除失败</response>
             <response code="404">未找到信息</response>
-            <returns></returns>
+            <returns>状态码并信息</returns>
         </member>
-        <member name="M:APIs.Controllers.CommentController.getCommentByShow(System.Nullable{System.Int64})">
+        <member name="M:APIs.Controllers.PaticularShowController.getParticularShow(System.Int64)">
             <summary>
-            通过演出ID获取评论
+            获取某个演出的相关信息
             </summary>
-            <param name="showId">演出ID</param>
-            <response code="200">删除成功</response>
-            <response code="400">删除失败</response>
-            <response code="404">未找到信息</response>
-            <returns></returns>
+            <param name="showId"> 演出ID</param>
+            <returns>某个演出的相关信息</returns>
         </member>
         <member name="M:APIs.Controllers.VIPController.newVip(System.Nullable{System.Int64})">
             <summary>
@@ -40,7 +46,14 @@
             <param name="customerId">顾客ID</param>
             <response code="200">插入成功</response>
             <response code="400">插入失败</response>
-            <returns></returns>
+            <returns>状态码并信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.VIPController.checkVip(System.Int64)">
+            <summary>
+            判断顾客是否是VIP
+            </summary>
+            <param name="customerId">顾客ID</param>
+            <returns>若是VIP,返回VIP信息，否则返回null</returns>
         </member>
     </members>
 </doc>
