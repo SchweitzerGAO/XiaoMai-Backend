@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.OracleClient;
 using Oracle.ManagedDataAccess.Client;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 namespace APIs.DBUtility
 {
 
@@ -13,9 +15,9 @@ namespace APIs.DBUtility
     public class DBHelper
     {
         //加入参数，引入 "sever=8.140.12.78;database=orcl;uid=system;pwd=123456;" 
-        public string ConnectionString { get;} =
+        public string ConnectionString { get; } =
         //"User ID=system;Password=123456;Data Source=orcl;)";
-        "User ID=system;Password=123456;Data Source=(DESCRIPTION =(ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = 8.140.12.78)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = orcl)))";
+       "User ID=system;Password=123456;Data Source=(DESCRIPTION =(ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = 8.140.12.78)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = orcl)))";
         public DataTable ExecuteTable(string cmdText, params OracleParameter[] oraParameters) {
            
             using OracleConnection conn = new OracleConnection(ConnectionString); 
