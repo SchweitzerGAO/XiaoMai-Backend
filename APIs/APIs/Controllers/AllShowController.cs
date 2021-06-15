@@ -25,9 +25,11 @@ namespace APIs.Controllers
             DBHelper dbHelper = new DBHelper();
             try
             {
-                List<GeneralShow> res = new List<GeneralShow>();
-                string queryShow = "SELECT ID,NAME,PHOTO FROM SHOW WHERE IS_VALID = 1";
+                var res = new List<GeneralShow>();
+                string queryShow = "SELECT ID,NAME,PHOTO FROM SHOW WHERE IS_VALID = 1 ORDER BY ID";
                 DataTable dtShow = dbHelper.ExecuteTable(queryShow);
+                string queryAvgRate = "SELECT AVG(RATE) AVG_RATE,SHOW_ID FROM COMM GROUP BY SHOW_ID";
+                DataTable dtAvgRate = dbHelper.ExecuteTable(queryAvgRate);
                 if (dtShow.Rows.Count == 0)
                 {
                     return NotFound("暂无演出");
@@ -41,7 +43,13 @@ namespace APIs.Controllers
                             showId = long.Parse(row["ID"].ToString()),
                             name = row["NAME"].ToString(),
                             image = row["PHOTO"].ToString() == string.Empty ? null : Convert.ToBase64String((byte[])(row["PHOTO"]))
+
                         });
+                    }
+                    foreach(DataRow row in dtAvgRate.Rows)
+                    {
+                        long id = long.Parse(row["SHOW_ID"].ToString());
+                        res[(int)id - 1].avgRate = double.Parse(row["AVG_RATE"].ToString());
                     }
                     return Ok(new JsonResult(res));
                 }

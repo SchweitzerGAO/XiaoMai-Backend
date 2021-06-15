@@ -15,7 +15,7 @@ namespace APIs.DBUtility
     public class DBHelper
     {
         //加入参数，引入 "sever=8.140.12.78;database=orcl;uid=system;pwd=123456;" 
-        public string ConnectionString { get; } =
+        string ConnectionString { get; } =
         //"User ID=system;Password=123456;Data Source=orcl;)";
        "User ID=system;Password=123456;Data Source=(DESCRIPTION =(ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = 8.140.12.78)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = orcl)))";
         public DataTable ExecuteTable(string cmdText, params OracleParameter[] oraParameters) {
@@ -45,12 +45,12 @@ namespace APIs.DBUtility
             conn.Close();
             return res;
         }
-        public ulong ExecuteCount(string tableName)
+        public ulong ExecuteMax(string tableName)
         {
             ulong res;
-            string query = "SELECT COUNT(ID) COUNT FROM " + tableName;
+            string query = "SELECT MAX(ID) MAX FROM " + tableName;
             DataTable ds = ExecuteTable(query);
-            res = ulong.Parse(ds.Rows[0]["COUNT"].ToString());
+            res = ulong.Parse(ds.Rows[0]["MAX"].ToString());
             return res;
         }
     }

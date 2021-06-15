@@ -32,7 +32,7 @@ namespace APIs.Controllers
             try
             {
                 DBHelper dbhelper = new DBHelper();
-                ulong id = dbhelper.ExecuteCount("COMM") + 1;
+                ulong id = dbhelper.ExecuteMax("COMM") + 1;
                 string insert = "INSERT INTO COMM VALUES(:id,:rate,:customerId,:showId,:content,:time)";
                 OracleParameter[] parametersForInsert =
                 {
