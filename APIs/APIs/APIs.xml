@@ -6,7 +6,7 @@
     <members>
         <member name="M:APIs.Controllers.AllShowController.getAllShows">
             <summary>
-            查找所有演出
+            获取所有演出相关信息
             </summary>
             <response code="404">暂无演出</response>
             <response code="400">数据库请求错误</response>
@@ -32,12 +32,40 @@
             <response code="404">未找到信息</response>
             <returns>状态码并信息</returns>
         </member>
-        <member name="M:APIs.Controllers.PaticularShowController.getParticularShow(System.Int64)">
+        <member name="M:APIs.Controllers.GeneralGoodsController.getGeneralGoodsByShow(System.Int64)">
+            <summary>
+            返回与某演出关联的所有总体周边信息
+            </summary>
+            <param name="showId">演出ID</param>
+            <returns>所有总体周边信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.GeneralSlotController.getGeneralSlotByShow(System.Int64)">
+            <summary>
+            返回所有总体场次信息
+            </summary>
+            <param name="showId">演出ID</param>
+            <returns>所有场次信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.LabelController.getLabelByShow(System.Int64)">
+            <summary>
+            获取演出标签信息
+            </summary>
+            <param name="showId">演出ID</param>
+            <returns>该演出的标签信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.ParticularShowController.getParticularShow(System.Int64)">
             <summary>
             获取某个演出的相关信息
             </summary>
             <param name="showId"> 演出ID</param>
             <returns>某个演出的相关信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.SearchController.getSearchResult(System.String)">
+            <summary>
+            搜索
+            </summary>
+            <param name="search">搜索条件</param>
+            <returns>符合搜索条件的结果</returns>
         </member>
         <member name="M:APIs.Controllers.VIPController.newVip(System.Nullable{System.Int64})">
             <summary>
@@ -47,6 +75,13 @@
             <response code="200">插入成功</response>
             <response code="400">插入失败</response>
             <returns>状态码并信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.VIPController.updateVip(System.Int64,System.Double)">
+            <summary>
+            更新会员积分
+            </summary>
+            <param name="customerId">顾客ID</param>
+            <param name="newPoint">新的积分</param>
         </member>
         <member name="M:APIs.Controllers.VIPController.checkVip(System.Int64)">
             <summary>

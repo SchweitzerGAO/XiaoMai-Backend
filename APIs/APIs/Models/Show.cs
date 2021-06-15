@@ -10,6 +10,7 @@ namespace APIs.Models
         public long showId { get; set; }     // 演出ID
         public string name { get; set; }     // 演出名称
         public string image { get; set; }    // 演出图片
+        public double? avgRate { get; set; } // 平均评分
     }
     public class ParticularShow
     {
