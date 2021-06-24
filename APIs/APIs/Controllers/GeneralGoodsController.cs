@@ -8,7 +8,7 @@ using System.Data;
 
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class GeneralGoodsController : ControllerBase
     {
@@ -17,14 +17,14 @@ namespace APIs.Controllers
         /// </summary>
         /// <param name="showId">演出ID</param>
         /// <returns>所有总体周边信息</returns>
-        [HttpGet]
+        [HttpGet("{showId}")]
         public static List<GeneralGoods> getGeneralGoodsByShow(long showId)
         {
             DBHelper dbHelper = new DBHelper();
             try
             {
                 var res = new List<GeneralGoods>();
-                string query = "SELECT ID,NAME,PHOTO FROM GOODS WHERE SHOW_ID=:showId AND IS_VALID = 1";
+                string query = "SELECT ID,SELLER_ID,NAME,PHOTO FROM GOODS JOIN SELLER_GOODS ON ID = GOODS_ID WHERE SHOW_ID=:showId AND GOODS.IS_VALID = 1";
                 OracleParameter[] parameterForQuery = { new OracleParameter(":showId", OracleDbType.Long, 10) };
                 parameterForQuery[0].Value = showId;
                 DataTable dt = dbHelper.ExecuteTable(query, parameterForQuery);
@@ -40,6 +40,7 @@ namespace APIs.Controllers
                         res.Add(new GeneralGoods()
                         {
                             id = long.Parse(row["ID"].ToString()),
+                            sellerId = long.Parse(row["SELLER_ID"].ToString()),
                             name = row["NAME"].ToString(),
                             image = row["PHOTO"].ToString() == string.Empty ? null : Convert.ToBase64String((byte[])(row["PHOTO"]))
                         });

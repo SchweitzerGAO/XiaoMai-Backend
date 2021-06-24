@@ -4,14 +4,26 @@
         <name>APIs</name>
     </assembly>
     <members>
-        <member name="M:APIs.Controllers.AllShowController.getAllShows">
+        <member name="M:APIs.Controllers.AllOrderController.getOrder(System.Int64)">
             <summary>
-            获取所有演出相关信息
+            顾客查询所有订单
             </summary>
-            <response code="404">暂无演出</response>
-            <response code="400">数据库请求错误</response>
-            <response code="200">查找成功</response>
-            <returns>所有演出信息</returns>
+            <param name="customerId">顾客ID</param>
+            <returns>顾客所有订单信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.AllOrderController.deleteOrder(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="orderId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:APIs.Controllers.AreaController.getAreasById(System.Int64)">
+            <summary>
+            获取一个场次的所有分区以及座位
+            </summary>
+            <param name="slotId">场次ID</param>
+            <returns>此场次的所有分区及所有分区的所有座位</returns>
         </member>
         <member name="M:APIs.Controllers.CommentController.newComment(APIs.Models.Comment)">
             <summary>
@@ -32,12 +44,34 @@
             <response code="404">未找到信息</response>
             <returns>状态码并信息</returns>
         </member>
+        <member name="M:APIs.Controllers.CommentController.getCommentByShow(System.Int64)">
+            <summary>
+            获取某演出的所有评论
+            </summary>
+            <param name="showId"></param>
+            <returns>演出所有评论</returns>
+        </member>
+        <member name="M:APIs.Controllers.GeneralCustomerNoticeController.getAllCustomerNotice">
+            <summary>
+            顾客获取所有通知
+            </summary>
+            <returns>顾客的所有通知</returns>
+        </member>
         <member name="M:APIs.Controllers.GeneralGoodsController.getGeneralGoodsByShow(System.Int64)">
             <summary>
             返回与某演出关联的所有总体周边信息
             </summary>
             <param name="showId">演出ID</param>
             <returns>所有总体周边信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.GeneralShowsController.getGeneralShows">
+            <summary>
+            获取所有演出相关信息
+            </summary>
+            <response code="404">暂无演出</response>
+            <response code="400">数据库请求错误</response>
+            <response code="200">查找成功</response>
+            <returns>所有演出信息</returns>
         </member>
         <member name="M:APIs.Controllers.GeneralSlotController.getGeneralSlotByShow(System.Int64)">
             <summary>
@@ -46,12 +80,46 @@
             <param name="showId">演出ID</param>
             <returns>所有场次信息</returns>
         </member>
+        <member name="M:APIs.Controllers.GoodsOrderController.getGoodsOrders(System.Int64)">
+            <summary>
+            顾客的周边订单
+            </summary>
+            <param name="customerId">顾客ID</param>
+            <returns>周边订单信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.GoodsOrderController.deleteGoodsOrder(System.UInt64)">
+            <summary>
+            退订，并进行一些级联操作
+            </summary>
+            <param name="orderId">订单编号</param>
+        </member>
         <member name="M:APIs.Controllers.LabelController.getLabelByShow(System.Int64)">
             <summary>
             获取演出标签信息
             </summary>
             <param name="showId">演出ID</param>
             <returns>该演出的标签信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.ParticularGoodsController.getParticularGoodsById(System.Int64)">
+            <summary>
+            查看某周边的详细信息
+            </summary>
+            <param name="goodsId"> 周边ID</param>
+            <returns>所有售卖此周边的商家、价格以及剩余数量</returns>
+        </member>
+        <member name="M:APIs.Controllers.ParticularGoodsController.newGoodsOrder(APIs.Models.GoodsOrder[])">
+            <summary>
+            购买周边
+            </summary>
+            <param name="orders">周边订单数组</param>
+            <returns>状态码</returns>
+        </member>
+        <member name="M:APIs.Controllers.ParticularNoticeController.getParticularNoticeById(System.UInt64)">
+            <summary>
+            查看详细通知
+            </summary>
+            <param name="noticeId">通知ID</param>
+            <returns>通知详细内容</returns>
         </member>
         <member name="M:APIs.Controllers.ParticularShowController.getParticularShow(System.Int64)">
             <summary>
@@ -60,14 +128,41 @@
             <param name="showId"> 演出ID</param>
             <returns>某个演出的相关信息</returns>
         </member>
+        <member name="M:APIs.Controllers.ParticularSlotController.getParticularSlotById(System.Int64)">
+            <summary>
+            获取一个场次的所有信息
+            </summary>
+            <param name="slotId">场次ID</param>
+            <returns>场次的分区、座位、座位图信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.ParticularSlotController.newShowOrder(APIs.Models.ShowOrder[])">
+            <summary>
+            买票
+            </summary>
+            <param name="orders">订单</param>
+            <returns>状态码</returns>
+        </member>
         <member name="M:APIs.Controllers.SearchController.getSearchResult(System.String)">
             <summary>
             搜索
             </summary>
             <param name="search">搜索条件</param>
-            <returns>符合搜索条件的结果</returns>
+            <returns>符合搜索条件的结果(包括演出和周边)</returns>
         </member>
-        <member name="M:APIs.Controllers.VIPController.newVip(System.Nullable{System.Int64})">
+        <member name="M:APIs.Controllers.ShowOrderController.getShowOrders(System.Int64)">
+            <summary>
+            查看顾客演出订单
+            </summary>
+            <param name="customerId">顾客ID</param>
+            <returns>顾客演出订单信息</returns>
+        </member>
+        <member name="M:APIs.Controllers.ShowOrderController.deleteShowOrder(System.UInt64)">
+            <summary>
+            删除演出订单并进行一系列级联操作
+            </summary>
+            <param name="orderId">订单编号</param>
+        </member>
+        <member name="M:APIs.Controllers.VipController.newVip(System.Nullable{System.Int64})">
             <summary>
             添加VIP信息
             </summary>
@@ -76,19 +171,29 @@
             <response code="400">插入失败</response>
             <returns>状态码并信息</returns>
         </member>
-        <member name="M:APIs.Controllers.VIPController.updateVip(System.Int64,System.Double)">
+        <member name="M:APIs.Controllers.VipController.updateVip(System.Int64,System.Double)">
             <summary>
             更新会员积分
             </summary>
             <param name="customerId">顾客ID</param>
             <param name="newPoint">新的积分</param>
         </member>
-        <member name="M:APIs.Controllers.VIPController.checkVip(System.Int64)">
+        <member name="M:APIs.Controllers.VipController.checkVip(System.Int64)">
             <summary>
             判断顾客是否是VIP
             </summary>
             <param name="customerId">顾客ID</param>
             <returns>若是VIP,返回VIP信息，否则返回null</returns>
+        </member>
+        <member name="T:APIs.DBUtility.ConnectionHelper">
+            <summary>
+            获取连接字符串
+            </summary>
+        </member>
+        <member name="T:APIs.DBUtility.DBHelper">
+            <summary>
+            连接数据库，执行增删改查,主码自增
+            </summary>
         </member>
     </members>
 </doc>

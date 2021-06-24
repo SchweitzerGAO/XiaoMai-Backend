@@ -1,13 +1,12 @@
 ﻿using APIs.DBUtility;
-using APIs.Models;
 using Microsoft.AspNetCore.Mvc;
 using Oracle.ManagedDataAccess.Client;
-using System;
 using System.Collections.Generic;
 using System.Data;
+
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class LabelController : ControllerBase
     {

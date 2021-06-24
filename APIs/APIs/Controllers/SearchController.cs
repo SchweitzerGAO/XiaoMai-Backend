@@ -8,7 +8,7 @@ using System.Data;
 
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class SearchController : ControllerBase
     {
@@ -16,8 +16,11 @@ namespace APIs.Controllers
         /// 搜索
         /// </summary>
         /// <param name="search">搜索条件</param>
-        /// <returns>符合搜索条件的结果</returns>
-        [HttpGet]
+        /// <returns>符合搜索条件的结果(包括演出和周边)</returns>
+        [HttpGet("{search}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public IActionResult getSearchResult(string search)
         {
             if(search.Length>30)
@@ -72,10 +75,17 @@ namespace APIs.Controllers
 
                         });
                     }
-                    return Ok(new JsonResult(res));
+                    if(res.goods.Count == 0 && res.shows.Count == 0)
+                    {
+                        return NotFound("无匹配结果");
+                    }
+                    else
+                    {
+                        return Ok(new JsonResult(res));
+                    }
 
                 }
-                catch(OracleException e)
+                catch(OracleException)
                 {
                     return BadRequest("数据库请求错误");
                 }

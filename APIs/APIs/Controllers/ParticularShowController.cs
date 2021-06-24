@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ParticularShowController : ControllerBase
     {
@@ -17,13 +17,15 @@ namespace APIs.Controllers
         /// <param name="showId"> 演出ID</param>
         /// <returns>某个演出的相关信息</returns>
         [HttpGet("{showId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public IActionResult getParticularShow(long showId)
         {
             DBHelper dbHelper = new DBHelper();
             try
             {
                 string query = "SELECT INTRODUCTION FROM SHOW WHERE ID=:showId";
-                OracleParameter[] parameterForQuery = { new OracleParameter(":showId", OracleDbType.Long, 10) };
+                OracleParameter[] parameterForQuery = { new OracleParameter(":showId", OracleDbType.Long,10) };
                 parameterForQuery[0].Value = showId;
                 DataTable dt = dbHelper.ExecuteTable(query, parameterForQuery);
                 var res = new ParticularShow();
@@ -35,9 +37,9 @@ namespace APIs.Controllers
                 return Ok(new JsonResult(res));
 
             }
-            catch (OracleException)
+            catch (OracleException oe)
             {
-                return BadRequest("数据库请求错误");
+                return BadRequest("数据库请求错误 " + "错误代码 " + oe.Number.ToString());
             }
 
         }

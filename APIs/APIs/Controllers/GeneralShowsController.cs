@@ -5,11 +5,12 @@ using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
+
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class AllShowController : ControllerBase
+    public class GeneralShowsController : ControllerBase
     {
 
         /// <summary>
@@ -20,7 +21,10 @@ namespace APIs.Controllers
         /// <response code="200">查找成功</response>
         /// <returns>所有演出信息</returns>
         [HttpGet]
-        public IActionResult getAllShows()
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult getGeneralShows()
         {
             DBHelper dbHelper = new DBHelper();
             try
@@ -54,9 +58,9 @@ namespace APIs.Controllers
                     return Ok(new JsonResult(res));
                 }
             }
-            catch (OracleException)
+            catch (OracleException oe)
             {
-                return BadRequest("数据库请求错误");
+                return BadRequest("数据库请求错误 " + "错误代码 " + oe.Number.ToString());
             }
         }
     }
