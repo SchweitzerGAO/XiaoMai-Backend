@@ -8,7 +8,7 @@ using System.Data;
 
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class GeneralSlotController : ControllerBase
     {

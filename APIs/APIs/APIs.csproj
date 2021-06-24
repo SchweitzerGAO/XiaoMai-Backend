@@ -5,6 +5,9 @@
     <UserSecretsId>4d9b85b5-c2f9-4960-baf6-fb6f84842d97</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
+	<PropertyGroup>
+		<IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+	</PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\APIs.xml</DocumentationFile>

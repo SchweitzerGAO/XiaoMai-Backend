@@ -5,9 +5,10 @@ using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
+
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CommentController : ControllerBase
     {
@@ -24,11 +25,11 @@ namespace APIs.Controllers
         [ProducesResponseType(404)]
         public IActionResult newComment(Comment comment)
         {
-            if(comment.rate is null || comment.content is null)
+            if (comment.rate is null || comment.content is null)
             {
                 return BadRequest("缺少评分或评论内容");
             }
-           
+
             try
             {
                 DBHelper dbhelper = new DBHelper();
@@ -49,19 +50,19 @@ namespace APIs.Controllers
                 parametersForInsert[2].Value = comment.customerId;
                 parametersForInsert[3].Value = comment.showId;
                 parametersForInsert[4].Value = comment.content;
-                parametersForInsert[5].Value = DateTime.Now.ToString("G");
+                parametersForInsert[5].Value = DateTime.Now.ToLocalTime().ToString("G");
                 dbhelper.ExecuteNonQuery(insert, parametersForInsert);
                 return Ok("添加成功");
             }
-            catch (OracleException e)
+            catch (OracleException oe)
             {
-                 if(e.Number == 2291)
+                if (oe.Number == 2291)
                 {
                     return BadRequest("演出不存在");
                 }
                 else
                 {
-                    return BadRequest("数据库请求错误");
+                    return BadRequest("数据库请求错误 " + "错误代码 " + oe.Number.ToString());
                 }
             }
 
@@ -78,20 +79,20 @@ namespace APIs.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult deleteComment([FromBody]ulong? commId)
+        public IActionResult deleteComment(ulong? commId)
         {
-            if(commId is null)
+            if (commId is null)
             {
                 return BadRequest("缺少评论ID");
             }
-            DBHelper dbhelper = new DBHelper();
+            DBHelper dbHelper = new DBHelper();
             try
             {
                 string delete = "DELETE FROM COMM WHERE ID=:id";
-                OracleParameter[] parameterForDelete = { new OracleParameter(":id", OracleDbType.Long, 20) };
+                OracleParameter[] parameterForDelete = { new OracleParameter(":id", OracleDbType.Long,20) };
                 parameterForDelete[0].Value = commId;
-                int res = dbhelper.ExecuteNonQuery(delete, parameterForDelete);
-                if(res > 0)
+                int res = dbHelper.ExecuteNonQuery(delete, parameterForDelete);
+                if (res > 0)
                 {
                     return Ok("删除成功");
                 }
@@ -100,13 +101,18 @@ namespace APIs.Controllers
                     return NotFound("评论不存在");
                 }
             }
-            catch(OracleException)
+            catch (OracleException)
             {
                 return BadRequest("数据库请求错误");
             }
 
         }
-        [HttpGet]
+        /// <summary>
+        /// 获取某演出的所有评论
+        /// </summary>
+        /// <param name="showId"></param>
+        /// <returns>演出所有评论</returns>
+        [HttpGet("{showId}")]
         public static List<CommentCustomer> getCommentByShow(long showId)
         {
             DBHelper dbHelper = new DBHelper();

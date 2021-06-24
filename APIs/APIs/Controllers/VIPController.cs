@@ -1,14 +1,14 @@
 ﻿using APIs.DBUtility;
+using APIs.Models;
 using Microsoft.AspNetCore.Mvc;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
-using APIs.Models;
-using System.Net.Http;
+
 namespace APIs.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class VIPController : ControllerBase
+    public class VipController : ControllerBase
     {
         /// <summary>
         /// 添加VIP信息
@@ -20,8 +20,8 @@ namespace APIs.Controllers
         [HttpPost("{customerId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-
-        public IActionResult newVip([FromBody]long? customerId)
+        [ProducesResponseType(404)]
+        public IActionResult newVip(long? customerId)
         {
             // 非法输入
             if (customerId is null)
@@ -39,7 +39,7 @@ namespace APIs.Controllers
                 OracleParameter[] parametersForInsert =
                 {
                     new OracleParameter(":customerId", OracleDbType.Long, 10),
-                    new OracleParameter(":point", OracleDbType.Int32),
+                    new OracleParameter(":point", OracleDbType.Double),
                     new OracleParameter(":lvl",OracleDbType.Int32)
                 };
                 parametersForInsert[0].Value = customerId;
@@ -55,9 +55,9 @@ namespace APIs.Controllers
                     return NotFound("未找到信息");
                 }
             }
-            catch (OracleException)
+            catch (OracleException oe)
             {
-                return BadRequest("数据库请求错误");
+                return BadRequest("数据库请求错误 " + "错误代码 " + oe.Number.ToString());
             }
         }
         /// <summary>
@@ -76,13 +76,13 @@ namespace APIs.Controllers
                 string updatePoint = "UPDATE VIP SET POINT = POINT+:newPoint WHERE ID = :customerId";
                 OracleParameter[] parametersForUpdatePoint =
                 {
-                    new OracleParameter(":newPoint",OracleDbType.Int32),
+                    new OracleParameter(":newPoint",OracleDbType.Double),
                     new OracleParameter(":customerId", OracleDbType.Long, 10)
                 };
                 parametersForUpdatePoint[0].Value = newPoint;
                 parametersForUpdatePoint[1].Value = customerId;
                 dbHelper.ExecuteNonQuery(updatePoint, parametersForUpdatePoint);
-                string updateLevel = "UPDATE VIP SET LEVEL=" +
+                string updateLevel = "UPDATE VIP SET LVL=" +
                     "CASE WHEN POINT<=1000 THEN 1 WHEN POINT>1000 AND POINT<=10000 THEN 2" +
                     "WHEN POINT>10000 AND POINT<=50000 THEN 3 WHEN POINT>50000 THEN 4 END WHERE ID =:customerId";
                 OracleParameter[] parameterForUpdateLevel = 
