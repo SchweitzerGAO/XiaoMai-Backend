@@ -318,11 +318,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\数据库课程设计2021\\APIs\\APIs\\APIs.csproj",
+      "projectUniqueName": "D:\\DB库\\APIs\\APIs\\APIs.csproj",
       "projectName": "APIs",
-      "projectPath": "D:\\数据库课程设计2021\\APIs\\APIs\\APIs.csproj",
+      "projectPath": "D:\\DB库\\APIs\\APIs\\APIs.csproj",
       "packagesPath": "C:\\Users\\杨文杰\\.nuget\\packages\\",
-      "outputPath": "D:\\数据库课程设计2021\\APIs\\APIs\\obj\\",
+      "outputPath": "D:\\DB库\\APIs\\APIs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
