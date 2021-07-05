@@ -20,4 +20,12 @@ namespace APIs.Models
         public string UserType { get; set; }            //用户类型
     }
 
+    public class ResetPw
+    {
+        public string ID { get; set; }                  //用户ID
+        public string newPassword { get; set; }            //用户新密码
+        public string oldPassword { get; set; }             //旧密码
+        public string UserType { get; set; }            //用户类型
+    }
+
 }
