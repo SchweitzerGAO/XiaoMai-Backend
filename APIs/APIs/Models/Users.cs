@@ -20,12 +20,12 @@ namespace APIs.Models
         public string UserType { get; set; }            //用户类型
     }
 
-    public class ResetPw
+
+    public class Users   //用户脱敏信息，不包括密码，
     {
-        public string ID { get; set; }                  //用户ID
-        public string newPassword { get; set; }            //用户新密码
-        public string oldPassword { get; set; }             //旧密码
-        public string UserType { get; set; }            //用户类型
+        public long UserID { get; set; }                //用户ID（主码查询用）
+
+        public string UserType { get; set; }            //用户类型（查表用）
     }
 
 }

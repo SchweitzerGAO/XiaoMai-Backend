@@ -26,7 +26,7 @@ namespace APIs.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult SignIn(SignUp signUp)
+        public IActionResult SignUp(SignUp signUp)
         {
             DBHelper dBHelper = new DBHelper();
             string sqlQueryID = "SELECT COUNT(*) FROM " + signUp.UserType.ToString();
@@ -60,48 +60,6 @@ namespace APIs.Controllers
             parametersInsert[3].Value = SignDateTime;
             dBHelper.ExecuteNonQuery(sqlInsert, parametersInsert);
             return Ok(IDNumber);
-
-            //if (signIn.UserType == "SELLER")
-            //{
-
-            //    string sqlInsert = "INSERT INTO SELLER (ID,SELLER_NAME,PASSWORD,DATE_OF_REG) VALUES (:ID, :USER_NAME, :PASSWORD, :DATE_OF_REG)";
-
-            //    OracleParameter[] parametersInsert =
-            //    {
-            //        new OracleParameter(":ID", OracleDbType.Long,10),
-            //        new OracleParameter(":USER_NAME", OracleDbType.Varchar2),
-            //        new OracleParameter(":PASSWORD", OracleDbType.Varchar2),
-            //        new OracleParameter(":DATE_OF_REG", OracleDbType.Varchar2),
-            //        new OracleParameter(":DATE_OF_REG", OracleDbType.Varchar2),
-            //    };
-            //    parametersInsert[0].Value = IDNumber;
-            //    parametersInsert[1].Value = Username;
-            //    parametersInsert[2].Value = Password;
-            //    parametersInsert[3].Value = SignDateTime;
-            //    dBHelper.ExecuteNonQuery(sqlInsert, parametersInsert);
-            //    return Ok(IDNumber);
-            //}
-            //if (signIn.UserType == "CUSTOMER")
-            //{
-
-            //    string sqlInsert = "INSERT INTO CUSTOMER (ID,USER_NAME,PASSWORD,DATE_OF_REG) VALUES (:ID, :USER_NAME, :PASSWORD, :DATE_OF_REG)";
-            //    OracleParameter[] parametersInsert =
-            //    {
-            //        new OracleParameter(":ID", OracleDbType.Long,10),
-            //        new OracleParameter(":USER_NAME", OracleDbType.Varchar2),
-            //        new OracleParameter(":PASSWORD", OracleDbType.Varchar2),
-            //        new OracleParameter(":DATE_OF_REG", OracleDbType.Varchar2),
-            //    };
-            //    parametersInsert[0].Value = IDNumber;
-            //    parametersInsert[1].Value = Username;
-            //    parametersInsert[2].Value = Password;
-            //    parametersInsert[3].Value = SignDateTime;
-            //    dBHelper.ExecuteNonQuery(sqlInsert, parametersInsert);
-
-
-            //    return Ok(IDNumber);
-            //}
-            //return BadRequest("数据库表名调用错误");
 
         }
     }
