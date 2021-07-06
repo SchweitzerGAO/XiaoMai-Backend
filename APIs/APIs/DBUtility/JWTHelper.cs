@@ -102,7 +102,7 @@ namespace APIs.DBUtility
 
 
         #region GetPayloadFromToken、 GetPayload
-        public static JWTPayload GetHeaderFromToken(string tokenValue)
+        public static JWTPayload GetPayloadFromToken(string tokenValue)
         {
             try
             {
@@ -170,6 +170,30 @@ namespace APIs.DBUtility
             {
                 return false;
             }
+        }
+
+
+
+        /// <summary>
+        /// 用户脱敏信息
+        /// </summary>
+        /// <param name="tokenValue"></param>
+        /// <returns>User类型</returns>
+        public static Users GetUsers(string tokenValue)
+        {
+            JWTPayload jwtPayload = JWTHelper.GetPayloadFromToken(tokenValue);
+            Users user = new Users();
+            user.UserID = long.Parse(jwtPayload.UserID);
+            string userTypeStringFormat;
+            switch (jwtPayload.UserType)
+            {
+                case 0: userTypeStringFormat = "ADMIN"; break;
+                case 1: userTypeStringFormat = "CUSTOMER"; break;
+                case 2: userTypeStringFormat = "SELLER"; break;
+                default: userTypeStringFormat = null;break;
+            }
+            user.UserType = userTypeStringFormat;
+            return user;
         }
     }
 }
