@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "jUZK0ajRlVp0jnbTCfYkaTaWt43OTzNODreKIzAY/sFBm1RqrhqTnfv4jDH9/y8q8Fuj/370XxIuHaYOhlqG8w==",
+  "success": true,
+  "projectFilePath": "D:\\DB库\\APIs\\APIs\\APIs.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\杨文杰\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\杨文杰\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\杨文杰\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.14\\microsoft.visualstudio.azure.containers.tools.targets.1.10.14.nupkg.sha512",
+    "C:\\Users\\杨文杰\\.nuget\\packages\\oracle.manageddataaccess.core\\2.19.110\\oracle.manageddataaccess.core.2.19.110.nupkg.sha512",
+    "C:\\Users\\杨文杰\\.nuget\\packages\\swashbuckle.aspnetcore\\6.1.4\\swashbuckle.aspnetcore.6.1.4.nupkg.sha512",
+    "C:\\Users\\杨文杰\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.4\\swashbuckle.aspnetcore.swagger.6.1.4.nupkg.sha512",
+    "C:\\Users\\杨文杰\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.1.4\\swashbuckle.aspnetcore.swaggergen.6.1.4.nupkg.sha512",
+    "C:\\Users\\杨文杰\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.1.4\\swashbuckle.aspnetcore.swaggerui.6.1.4.nupkg.sha512"
+  ],
+  "logs": []
+}
