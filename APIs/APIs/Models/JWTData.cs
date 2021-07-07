@@ -32,9 +32,9 @@ namespace APIs.Models
         /// </summary>
         public string UserID { get; set; }
         /// <summary>
-        /// 是否管理员
+        /// 用户类型，0为管理员，1为用户，2为商家
         /// </summary>
-        public bool UserType { get; set; }
+        public int UserType { get; set; }
     }
 
 }

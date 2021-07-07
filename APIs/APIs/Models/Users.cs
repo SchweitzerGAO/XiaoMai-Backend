@@ -20,4 +20,12 @@ namespace APIs.Models
         public string UserType { get; set; }            //用户类型
     }
 
+
+    public class Users   //用户脱敏信息，不包括密码，
+    {
+        public long UserID { get; set; }                //用户ID（主码查询用）
+
+        public string UserType { get; set; }            //用户类型（查表用）
+    }
+
 }

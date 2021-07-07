@@ -8,14 +8,14 @@ using JWT.Serializers;
 using System.Web;
 using APIs.Models;
 using Newtonsoft.Json;
-
+using System.Security.Cryptography;
 
 namespace APIs.DBUtility
 {
     public class JWTHelper
     {
         //私钥设置
-        private static string saltKey = "SHANGHAI_HUANGDU_INSTITUTE_OF_TECHNOLOGY";
+        private static string saltKey = "ShangHaiHuangduInstitueOfTechnology";
         public static long exp = 7200;
 
         /// <summary>
@@ -35,10 +35,12 @@ namespace APIs.DBUtility
                 //    { "username","admin" },
                 //    { "pwd", "claim2-value" }
                 //};
+                //--------------加密器配置
                 IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
                 IJsonSerializer serializer = new JsonNetSerializer();
                 IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
                 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
+                //--------------------
                 //json转string
                 string strHeader = JsonConvert.SerializeObject(jwtHeader);
                 string strPayload = JsonConvert.SerializeObject(jwtPayload);
@@ -47,18 +49,32 @@ namespace APIs.DBUtility
                 byte[] encHeaderBuff = System.Text.Encoding.UTF8.GetBytes(strHeader);
                 string basHeader = Convert.ToBase64String(encHeaderBuff);
                 byte[] encPayloadBuff = System.Text.Encoding.UTF8.GetBytes(strPayload);
-                string basPayload = Convert.ToBase64String(encHeaderBuff);
+                string basPayload = Convert.ToBase64String(encPayloadBuff);
 
-                string value = basHeader + basPayload;
+                //-------
+                string value = basHeader +"."+ basPayload;
+                //debug
+                //byte[] SHA256Data = System.Text.Encoding.UTF8.GetBytes(value);
+                //SHA256Managed sha256 = new SHA256Managed();
+                //byte[] SHA256Reslut = sha256.ComputeHash(SHA256Data);
+
+                //var Payload = new Dictionary<string, object>
+                //{
+                //    { "UserID",jwtPayload.UserID},
+                //    { "UserType",jwtPayload.}
+                //}
+                //string basSignature = encoder.Encode(value, saltKey);
                 string basSignature = encoder.Encode(value, saltKey);
                 string token = string.Format("{0}.{1}.{2}", basHeader, basPayload, basSignature);
+                
                 return token;
+                //--------
             }
             //如果创建token失败则返回空值
             catch (Exception) { return string.Empty; }
 
         }
-
+            
 
         #region GetHeaderFromToken、GetHeader
         public static JWTHeader GerHeaderFromToken(string tokenValue)
@@ -102,7 +118,7 @@ namespace APIs.DBUtility
 
 
         #region GetPayloadFromToken、 GetPayload
-        public static JWTPayload GetHeaderFromToken(string tokenValue)
+        public static JWTPayload GetPayloadFromToken(string tokenValue)
         {
             try
             {
@@ -153,14 +169,19 @@ namespace APIs.DBUtility
             {
                 string[] array = tokenValue.Split('.');
                 //获取TOKEN前两部分，即Header以及Payload
-                string value = array[0] + array[1];
+                string value = array[0] +"."+ array[1];
                 IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
                 IJsonSerializer serializer = new JsonNetSerializer();
                 IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
                 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
                
                 string basSignature = encoder.Encode(value, saltKey);
-               
+                string res = "";
+                for (int i = 2; i < array.Length; i += 1)
+                {
+                    res += array[i];
+                    if (i != array.Length - 1) res += ".";
+                }
                 if (basSignature == array[2])
                     return true;
                 else
@@ -170,6 +191,30 @@ namespace APIs.DBUtility
             {
                 return false;
             }
+        }
+
+
+
+        /// <summary>
+        /// 用户脱敏信息
+        /// </summary>
+        /// <param name="tokenValue"></param>
+        /// <returns>User类型</returns>
+        public static Users GetUsers(string tokenValue)
+        {
+            JWTPayload jwtPayload = JWTHelper.GetPayloadFromToken(tokenValue);
+            Users user = new Users();
+            user.UserID = long.Parse(jwtPayload.UserID);
+            string userTypeStringFormat;
+            switch (jwtPayload.UserType)
+            {
+                case 0: userTypeStringFormat = "ADMIN"; break;
+                case 1: userTypeStringFormat = "CUSTOMER"; break;
+                case 2: userTypeStringFormat = "SELLER"; break;
+                default: userTypeStringFormat = null;break;
+            }
+            user.UserType = userTypeStringFormat;
+            return user;
         }
     }
 }
