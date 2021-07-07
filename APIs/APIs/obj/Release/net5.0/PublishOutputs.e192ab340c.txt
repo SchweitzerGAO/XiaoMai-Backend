@@ -1,0 +1,14 @@
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\APIs.exe
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\appsettings.json
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\APIs.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\APIs.deps.json
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\APIs.runtimeconfig.json
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\APIs.pdb
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\JWT.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\Microsoft.OpenApi.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\Oracle.ManagedDataAccess.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

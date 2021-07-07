@@ -1,5 +1,4 @@
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\appsettings.Development.json
-C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\appsettings.json
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\APIs.exe
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\APIs.deps.json
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\APIs.runtimeconfig.json
@@ -29,3 +28,6 @@ C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Databas
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Debug\net5.0\APIs.pdb
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\obj\Debug\net5.0\APIs.genruntimeconfig.cache
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\APIs.xml
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\JWT.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\appsettings.json
