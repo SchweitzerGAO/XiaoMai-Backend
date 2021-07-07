@@ -32,7 +32,7 @@ namespace APIs
             });
             services.AddCors(option =>
             option.AddPolicy(MyAllowSpecificOrigins, policy =>
-            policy.WithOrigins("http://192.168.43.119:8080")
+            policy.WithOrigins("http://192.168.43.119:8080","http://localhost:8080")
             .WithHeaders(HeaderNames.ContentType, "Access-Control-Allow-Headers")));
 
         }
