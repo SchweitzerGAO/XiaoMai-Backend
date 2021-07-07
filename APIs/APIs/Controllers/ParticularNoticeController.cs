@@ -18,6 +18,8 @@ namespace APIs.Controllers
         /// <param name="noticeId">通知ID</param>
         /// <returns>通知详细内容</returns>
         [HttpGet("{noticeId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public IActionResult getParticularNoticeById(ulong noticeId)
         {
             DBHelper dbHelper = new DBHelper();
