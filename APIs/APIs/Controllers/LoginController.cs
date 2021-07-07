@@ -1,17 +1,8 @@
 using APIs.DBUtility;
 using APIs.Models;
 using Microsoft.AspNetCore.Mvc;
-<<<<<<< HEAD
 using System.Data;
 
-=======
-using Oracle.ManagedDataAccess.Client;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
->>>>>>> ad95bf414a5f4c5878c44a78d312183dd2cb2cbc
 
 
 namespace APIs.Controllers
@@ -31,9 +22,7 @@ namespace APIs.Controllers
             DBHelper dBHelper = new DBHelper();
 
             //登录方式为ID+密码
-
-<<<<<<< HEAD
-            string sqlQueryPW = @"SELECT PASSWORD FROM " + login.UserType+@" WHERE ID ="+login.ID;
+            string sqlQueryPW = @"SELECT PASSWORD FROM " + login.UserType + @" WHERE ID =" + login.ID;
             DataTable table = dBHelper.ExecuteTable(sqlQueryPW);
             DataRow Row = table.Rows[0];
             if (Row["PASSWORD"] != null)
@@ -62,16 +51,10 @@ namespace APIs.Controllers
                     return BadRequest("账号与密码不符");
             }
             return BadRequest("账号不存在");
-            }
-=======
-            string sqlQueryID = @"SELECT PASSWORD FROM " + login.UserType.ToString()+@"WHERE ID ="+login.ID;
-            DataTable table = dBHelper.ExecuteTable(sqlQueryID);
-            DataRow Row = table.Rows[0];
-            if (Row["PASSWORD"].ToString() == login.Password)
-                return Ok();
-            else
-                return BadRequest("账号与密码不符");
+
+
         }
->>>>>>> ad95bf414a5f4c5878c44a78d312183dd2cb2cbc
+        
+
     }
 }
