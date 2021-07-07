@@ -162,6 +162,21 @@
             </summary>
             <param name="orderId">订单编号</param>
         </member>
+        <member name="M:APIs.Controllers.SignUpController.SignIn(APIs.Models.SignUp)">
+            <summary>
+            注册
+            </summary>
+            <param name="signUp"> 注册用户类</param>
+            <returns>注册成功的用户名ID</returns>
+            <!--注册用户类的UserType应当限定在SELLER 以及 CUSTOMER 以内-->
+        </member>
+        <member name="M:APIs.Controllers.UserManageController.ResetPassword">
+            <summary>
+            注册
+            </summary>
+            <param> 注册用户类</param>
+            <returns>修改密码的结果</returns>
+        </member>
         <member name="M:APIs.Controllers.VipController.newVip(System.Nullable{System.Int64})">
             <summary>
             添加VIP信息
@@ -193,6 +208,59 @@
         <member name="T:APIs.DBUtility.DBHelper">
             <summary>
             连接数据库，执行增删改查,主码自增
+            </summary>
+        </member>
+        <member name="M:APIs.DBUtility.JWTHelper.SetJwtEncode(APIs.Models.JWTPayload)">
+            <summary>
+            生成JwtToken
+            </summary>
+            <param name="jwtPayload">非隐私的用户数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:APIs.DBUtility.JWTHelper.GetHeader(System.String)">
+            <summary>
+            获取Token信息，解密获得其他信息
+            </summary>
+            <param name="value"></param>
+            <returns>头部信息</returns>
+        </member>
+        <member name="M:APIs.DBUtility.JWTHelper.GetPayload(System.String)">
+            <summary>
+            获取Token信息，解密获得其他信息
+            </summary>
+            <param name="value"></param>
+            <returns>负载信息</returns>
+        </member>
+        <member name="M:APIs.DBUtility.JWTHelper.IsOkToken(System.String)">
+            <summary>
+            基础校验传入的Token的合法性
+            </summary>
+            <param name="tokenValue"></param>
+            <returns></returns>
+        </member>
+        <member name="P:APIs.Models.JWTHeader.alg">
+            <summary>
+            解密算法
+            </summary>
+        </member>
+        <member name="P:APIs.Models.JWTHeader.typ">
+            <summary>
+            TOKEN类型
+            </summary>
+        </member>
+        <member name="P:APIs.Models.JWTHeader.expTime">
+            <summary>
+            过期时间戳
+            </summary>
+        </member>
+        <member name="P:APIs.Models.JWTPayload.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:APIs.Models.JWTPayload.UserType">
+            <summary>
+            是否管理员
             </summary>
         </member>
     </members>

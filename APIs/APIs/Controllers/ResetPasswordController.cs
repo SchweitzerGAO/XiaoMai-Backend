@@ -23,8 +23,6 @@ namespace APIs.Controllers
         [ProducesResponseType(404)]
         public IActionResult ResetPassword(ResetPw reset)
         {
-            if (reset.oldPassword == reset.newPassword)
-                return BadRequest("请勿使用当前密码");
             DBHelper dBHelper = new DBHelper();
             string sqlQueryOPW = @"SELECT PASSWORD FROM " + reset.UserType.ToString() + @"WHERE ID =" + reset.ID;
             DataTable table = dBHelper.ExecuteTable(sqlQueryOPW);
