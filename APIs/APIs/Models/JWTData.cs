@@ -20,8 +20,7 @@ namespace APIs.Models
         /// <summary>
         /// 过期时间戳
         /// </summary>
-        public long expTime { get; set; } = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000 + JWTHelper.exp;
-
+        public string expTime { get; set; } = DateTime.Now.AddHours(2).ToString();
 
     }
 

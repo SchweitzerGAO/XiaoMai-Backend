@@ -28,4 +28,30 @@ namespace APIs.Models
         public string UserType { get; set; }            //用户类型（查表用）
     }
 
+    public class PersonalCenter
+    {
+        public string ID { get; set; }
+        public string UserType{ get; set; }
+        
+    }
+
+    public class UserInfo
+    { 
+        public string ID { get; set; }
+        public string UserName { get; set; }
+        public string Address { get; set; }
+        public string RegDate { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Image { get; set; }
+    }
+
+    public class SellerInfo
+    {
+        public string ID { get; set; }
+        public string SellerName { get; set; }
+        public string Address { get; set; }
+        public string RegDate { get; set; }
+        public string Image { get; set; }
+        public long Income { get; set; }
+    }
 }

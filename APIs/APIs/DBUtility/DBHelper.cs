@@ -2,6 +2,10 @@
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 using System.IO;
+using System;
+using System.Reflection;
+using System.Collections;
+using Newtonsoft.Json;
 namespace APIs.DBUtility
 {
     /// <summary>
@@ -60,6 +64,45 @@ namespace APIs.DBUtility
             DataTable ds = ExecuteTable(query);
             res = ds.Rows[0]["MAX"].ToString() == string.Empty ? 0 : ulong.Parse(ds.Rows[0]["MAX"].ToString());
             return res;
+        }
+
+        public void UpdatePassword(string cmdText)
+        {
+            using OracleConnection conn = new OracleConnection(ConnectionString);
+            conn.Open();
+            OracleCommand cmd = new OracleCommand(cmdText, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+
+        public string GetCustomerBlob(string ID)
+        {
+            using OracleConnection conn = new OracleConnection(ConnectionString);
+            conn.Open();
+            string Res = "";
+
+            OracleDataAdapter da = new OracleDataAdapter();
+            DataSet ds = new DataSet();
+            OracleCommand cmd= new OracleCommand();
+            cmd.CommandText = @"SELECT PHOTO FROM CUSTOMER WHERE ID =" + ID;
+            cmd.Connection = conn;
+            da.SelectCommand = cmd;
+            da.Fill(ds);
+            byte[] img = new byte[0];
+            DataRow dr;
+            dr = ds.Tables[0].Rows[0];
+            if (!ds.Tables[0].Rows[0]["PHOTO"].ToString().Equals(""))
+            {
+                img = (byte[])dr["PHOTO"];
+            }
+            conn.Close();
+            return Res;
+        }
+
+        public string ToJson(object jsonObject)
+        {
+            return JsonConvert.SerializeObject(jsonObject);
         }
     }
 }

@@ -50,6 +50,10 @@ namespace APIs.DBUtility
                 string basHeader = Convert.ToBase64String(encHeaderBuff);
                 byte[] encPayloadBuff = System.Text.Encoding.UTF8.GetBytes(strPayload);
                 string basPayload = Convert.ToBase64String(encPayloadBuff);
+<<<<<<< HEAD
+
+                string value = basHeader+"."+basPayload;
+=======
 
                 //-------
                 string value = basHeader +"."+ basPayload;
@@ -64,6 +68,7 @@ namespace APIs.DBUtility
                 //    { "UserType",jwtPayload.}
                 //}
                 //string basSignature = encoder.Encode(value, saltKey);
+>>>>>>> ad95bf414a5f4c5878c44a78d312183dd2cb2cbc
                 string basSignature = encoder.Encode(value, saltKey);
                 string token = string.Format("{0}.{1}.{2}", basHeader, basPayload, basSignature);
                 
@@ -169,20 +174,34 @@ namespace APIs.DBUtility
             {
                 string[] array = tokenValue.Split('.');
                 //获取TOKEN前两部分，即Header以及Payload
+<<<<<<< HEAD
+                string value = array[0] +"."+array[1];
+=======
                 string value = array[0] +"."+ array[1];
+>>>>>>> ad95bf414a5f4c5878c44a78d312183dd2cb2cbc
                 IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
                 IJsonSerializer serializer = new JsonNetSerializer();
                 IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
                 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-               
+
                 string basSignature = encoder.Encode(value, saltKey);
+<<<<<<< HEAD
+
+=======
+>>>>>>> ad95bf414a5f4c5878c44a78d312183dd2cb2cbc
                 string res = "";
                 for (int i = 2; i < array.Length; i += 1)
                 {
                     res += array[i];
                     if (i != array.Length - 1) res += ".";
                 }
+<<<<<<< HEAD
+
+
+                if (basSignature == res)
+=======
                 if (basSignature == array[2])
+>>>>>>> ad95bf414a5f4c5878c44a78d312183dd2cb2cbc
                     return true;
                 else
                     return false;
