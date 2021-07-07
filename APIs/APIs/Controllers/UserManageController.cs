@@ -114,14 +114,13 @@ namespace APIs.Controllers
         {
             DBHelper dBHelper = new DBHelper();
             ////获取到ID 和用户类型
-            //Users fromTokenUser = JWTHelper.GetUsers(tokenValue);
-            //if (fromTokenUser.UserType != "SELLER"&& fromTokenUser.UserType != "CUSTOMER") { return BadRequest("userType类型错误！"); }
+            Users fromTokenUser = JWTHelper.GetUsers(tokenValue);
+            if (fromTokenUser.UserType != "SELLER"&& fromTokenUser.UserType != "CUSTOMER") { return BadRequest("userType类型错误！"); }
 
             //2021-7-6测试代码
-            Users fromTokenUser = new Users();
-            fromTokenUser.UserID = 1;
-            fromTokenUser.UserType = "SELLER";
-             
+            //Users fromTokenUser = new Users();
+            //fromTokenUser.UserID = 1;
+            //fromTokenUser.UserType = "SELLER";
             //2021-7-6测试代码end
 
             //获取用户在库中的其他资料
