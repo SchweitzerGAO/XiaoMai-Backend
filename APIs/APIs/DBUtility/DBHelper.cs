@@ -66,27 +66,44 @@ namespace APIs.DBUtility
             return res;
         }
 
-        public void UpdatePassword(string cmdText)
+
+
+        public string GetCustomerBlob(string ID, params OracleParameter[] oraParameters)
         {
             using OracleConnection conn = new OracleConnection(ConnectionString);
             conn.Open();
-            OracleCommand cmd = new OracleCommand(cmdText, conn);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
-
-
-        public string GetCustomerBlob(string ID)
-        {
-            using OracleConnection conn = new OracleConnection(ConnectionString);
-            conn.Open();
-            string Res = "";
 
             OracleDataAdapter da = new OracleDataAdapter();
             DataSet ds = new DataSet();
             OracleCommand cmd= new OracleCommand();
             cmd.CommandText = @"SELECT PHOTO FROM CUSTOMER WHERE ID =" + ID;
             cmd.Connection = conn;
+            cmd.Parameters.AddRange(oraParameters);
+            da.SelectCommand = cmd;
+            da.Fill(ds);
+            byte[] img = new byte[0];
+            DataRow dr;
+            dr = ds.Tables[0].Rows[0];
+            if (!ds.Tables[0].Rows[0]["PHOTO"].ToString().Equals(""))
+            {
+                img = (byte[])dr["PHOTO"];
+            }
+            string Res = Convert.ToBase64String(img);
+            conn.Close();
+            return Res;
+        }
+
+        public string GetSellerBlob(string ID, params OracleParameter[] oraParameters)
+        {
+            using OracleConnection conn = new OracleConnection(ConnectionString);
+            conn.Open();
+
+            OracleDataAdapter da = new OracleDataAdapter();
+            DataSet ds = new DataSet();
+            OracleCommand cmd = new OracleCommand();
+            cmd.CommandText = @"SELECT PHOTO FROM SELLER WHERE ID =" + ID;
+            cmd.Connection = conn;
+            cmd.Parameters.AddRange(oraParameters);
             da.SelectCommand = cmd;
             da.Fill(ds);
             byte[] img = new byte[0];
@@ -97,6 +114,7 @@ namespace APIs.DBUtility
                 img = (byte[])dr["PHOTO"];
             }
             conn.Close();
+            string Res = Convert.ToBase64String(img);
             return Res;
         }
 
