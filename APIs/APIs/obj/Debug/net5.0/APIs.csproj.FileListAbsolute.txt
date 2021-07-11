@@ -31,3 +31,36 @@ C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Databas
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\JWT.dll
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\gaoyangfan\Desktop\COURSE_WORK_Bachelor\实践汇总\Semester_4\Database Project\DBPrincipleProject\APIs\APIs\bin\Debug\net5.0\appsettings.json
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.csprojAssemblyReference.cache
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.GeneratedMSBuildEditorConfig.editorconfig
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.AssemblyInfoInputs.cache
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.AssemblyInfo.cs
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.csproj.CoreCompileInputs.cache
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.MvcApplicationPartsAssemblyInfo.cs
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.MvcApplicationPartsAssemblyInfo.cache
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.dll
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\ref\APIs.dll
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.pdb
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\appsettings.Development.json
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\appsettings.json
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\APIs.exe
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\APIs.deps.json
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\APIs.runtimeconfig.json
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\APIs.runtimeconfig.dev.json
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\APIs.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\ref\APIs.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\APIs.pdb
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\APIs.xml
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\JWT.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\Oracle.ManagedDataAccess.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\数据库课程设计2021\APIs\APIs\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\staticwebassets\APIs.StaticWebAssets.Manifest.cache
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\staticwebassets\APIs.StaticWebAssets.xml
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\scopedcss\bundle\APIs.styles.css
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.RazorTargetAssemblyInfo.cache
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.csproj.CopyComplete
+D:\数据库课程设计2021\APIs\APIs\obj\Debug\net5.0\APIs.genruntimeconfig.cache

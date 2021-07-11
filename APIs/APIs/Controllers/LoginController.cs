@@ -1,12 +1,8 @@
 using APIs.DBUtility;
 using APIs.Models;
 using Microsoft.AspNetCore.Mvc;
-using Oracle.ManagedDataAccess.Client;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 
 namespace APIs.Controllers
@@ -26,14 +22,39 @@ namespace APIs.Controllers
             DBHelper dBHelper = new DBHelper();
 
             //登录方式为ID+密码
-
-            string sqlQueryID = @"SELECT PASSWORD FROM " + login.UserType.ToString()+@"WHERE ID ="+login.ID;
-            DataTable table = dBHelper.ExecuteTable(sqlQueryID);
+            string sqlQueryPW = @"SELECT PASSWORD FROM " + login.UserType + @" WHERE ID =" + login.ID;
+            DataTable table = dBHelper.ExecuteTable(sqlQueryPW);
             DataRow Row = table.Rows[0];
-            if (Row["PASSWORD"].ToString() == login.Password)
-                return Ok();
-            else
-                return BadRequest("账号与密码不符");
+            if (Row["PASSWORD"] != null)
+            {
+                if (Row["PASSWORD"].ToString() == login.Password)
+                {
+                    JWTPayload jwt = new JWTPayload();
+                    jwt.UserID = login.ID;
+                    switch (login.UserType)
+                    {
+                        case "ADMIN":
+                            jwt.UserType = 0;
+                            break;
+                        case "CUSTOMER":
+                            jwt.UserType = 1;
+                            break;
+                        case "SELLER":
+                            jwt.UserType = 2;
+                            break;
+                        default:
+                            break;
+                    }
+                    return Ok(JWTHelper.SetJwtEncode(jwt));
+                }
+                else
+                    return BadRequest("账号与密码不符");
+            }
+            return BadRequest("账号不存在");
+
+
         }
+        
+
     }
 }

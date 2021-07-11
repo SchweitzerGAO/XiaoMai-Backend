@@ -51,8 +51,8 @@ namespace APIs.DBUtility
                 byte[] encPayloadBuff = System.Text.Encoding.UTF8.GetBytes(strPayload);
                 string basPayload = Convert.ToBase64String(encPayloadBuff);
 
-                //-------
-                string value = basHeader +"."+ basPayload;
+
+                string value = basHeader+"."+basPayload;
                 //debug
                 //byte[] SHA256Data = System.Text.Encoding.UTF8.GetBytes(value);
                 //SHA256Managed sha256 = new SHA256Managed();
@@ -64,6 +64,7 @@ namespace APIs.DBUtility
                 //    { "UserType",jwtPayload.}
                 //}
                 //string basSignature = encoder.Encode(value, saltKey);
+
                 string basSignature = encoder.Encode(value, saltKey);
                 string token = string.Format("{0}.{1}.{2}", basHeader, basPayload, basSignature);
                 
@@ -169,20 +170,24 @@ namespace APIs.DBUtility
             {
                 string[] array = tokenValue.Split('.');
                 //获取TOKEN前两部分，即Header以及Payload
-                string value = array[0] +"."+ array[1];
+
+                string value = array[0] +"."+array[1];
                 IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
                 IJsonSerializer serializer = new JsonNetSerializer();
                 IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
                 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-               
+
                 string basSignature = encoder.Encode(value, saltKey);
+
                 string res = "";
                 for (int i = 2; i < array.Length; i += 1)
                 {
                     res += array[i];
                     if (i != array.Length - 1) res += ".";
                 }
-                if (basSignature == array[2])
+
+
+                if (basSignature == res)
                     return true;
                 else
                     return false;
