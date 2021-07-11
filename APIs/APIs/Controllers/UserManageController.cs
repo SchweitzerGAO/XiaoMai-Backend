@@ -12,7 +12,7 @@ namespace APIs.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class UserManageController : Controller
+    public class UserManageController : ControllerBase
     {
         /// <summary>
         /// 重置密码

@@ -10,4 +10,10 @@
         public string time { get; set; }    // 通知时间
         public string title { get; set; }   // 通知标题
     }
+    public class NoticeContent      //收到的通知包括的信息
+    {
+        public string time { get; set; }    // 通知时间
+        public string title { get; set; }   // 通知标题
+        public string content { get; set; }     //通知内容
+    }
 }

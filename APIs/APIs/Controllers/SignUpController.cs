@@ -14,7 +14,7 @@ namespace APIs.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class SignUpController : Controller
+    public class SignUpController : ControllerBase
     {
         /// <summary>
         /// 注册
