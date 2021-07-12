@@ -103,7 +103,7 @@ namespace APIs.Controllers
        /// 判断顾客是否是VIP
        /// </summary>
        /// <param name="customerId">顾客ID</param>
-       /// <returns>若是VIP,返回VIP信息，否则返回null</returns>
+       /// <returns>若是VIP,返回VIP信息，否则返回null,给后端</returns>
        [HttpGet]
         public static VIP checkVip(long customerId)
         {

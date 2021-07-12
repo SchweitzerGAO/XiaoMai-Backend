@@ -12,7 +12,7 @@ namespace APIs.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class SignUpController : Controller
+    public class SignUpController : ControllerBase
     {
         /// <summary>
         /// 注册
@@ -27,7 +27,7 @@ namespace APIs.Controllers
         public IActionResult SignUp(SignUp signUp)
         {
             DBHelper dBHelper = new DBHelper();
-            string sqlQueryID = "SELECT COUNT(*) FROM " + signUp.UserType.ToString();
+            string sqlQueryID = "SELECT MAX(ID) FROM " + signUp.UserType.ToString();
             DataTable res = dBHelper.ExecuteTable(sqlQueryID);
             DataRow dataRow = res.Rows[0];
             //ID
@@ -43,7 +43,7 @@ namespace APIs.Controllers
                 return BadRequest("数据库表名调用错误");
             }
             string UserTableName = (signUp.UserType == "SELLER") ? "SELLER" : "USER";
-            string sqlInsert = "INSERT INTO " + signUp.UserType + " (ID," + UserTableName + "_NAME,PASSWORD,DATE_OF_REG) VALUES (:ID, :USER_NAME, :PASSWORD, :DATE_OF_REG)";
+            string sqlInsert = "INSERT INTO " + signUp.UserType + " (ID," + UserTableName + "_NAME,PASSWORD,DATE_OF_REG,IS_VALID) VALUES (:ID, :USER_NAME, :PASSWORD, :DATE_OF_REG,1)";
             OracleParameter[] parametersInsert =
                {
                     new OracleParameter(":ID", OracleDbType.Long,10),

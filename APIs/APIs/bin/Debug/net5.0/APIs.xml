@@ -80,6 +80,25 @@
             <param name="showId">演出ID</param>
             <returns>所有场次信息</returns>
         </member>
+        <member name="M:APIs.Controllers.GoodsController.addGoods(APIs.Models.SellerGoods)">
+            <summary>
+            添加周边
+            </summary>
+            <param name="goods">周边信息</param>
+        </member>
+        <member name="M:APIs.Controllers.GoodsController.updateGoods(APIs.Models.SellerGoods)">
+            <summary>
+            商家更改周边的数量和价格
+            </summary>
+            <param name="goods">周边信息</param>
+        </member>
+        <member name="M:APIs.Controllers.GoodsController.deleteGoods(System.Int64,System.Int64)">
+            <summary>
+            商家下架周边
+            </summary>
+            <param name="sellerId">商家ID</param>
+            <param name="goodsId">周边ID</param>
+        </member>
         <member name="M:APIs.Controllers.GoodsOrderController.getGoodsOrders(System.Int64)">
             <summary>
             顾客的周边订单
@@ -149,6 +168,19 @@
             <param name="search">搜索条件</param>
             <returns>符合搜索条件的结果(包括演出和周边)</returns>
         </member>
+        <member name="M:APIs.Controllers.SellerNoticeController.getSellerNotice">
+            <summary>
+            商家查看通知
+            </summary>
+            <returns>商家的所有通知</returns>
+        </member>
+        <member name="M:APIs.Controllers.SellerViewGoodsController.getGoods(System.Int64)">
+            <summary>
+            商家查看周边信息
+            </summary>
+            <param name="sellerId">商家ID</param>
+            <returns>周边信息（Json格式）</returns>
+        </member>
         <member name="M:APIs.Controllers.ShowOrderController.getShowOrders(System.Int64)">
             <summary>
             查看顾客演出订单
@@ -214,7 +246,14 @@
             判断顾客是否是VIP
             </summary>
             <param name="customerId">顾客ID</param>
-            <returns>若是VIP,返回VIP信息，否则返回null</returns>
+            <returns>若是VIP,返回VIP信息，否则返回null,给后端</returns>
+        </member>
+        <member name="M:APIs.Controllers.VIPInfoController.getVip(System.Int64)">
+            <summary>
+            返回顾客的VIP信息
+            </summary>
+            <param name="customerId">顾客ID</param>
+            <returns></returns>
         </member>
         <member name="T:APIs.DBUtility.ConnectionHelper">
             <summary>
