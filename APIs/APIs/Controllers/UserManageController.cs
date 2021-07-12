@@ -7,7 +7,7 @@ using APIs.DBUtility;
 using APIs.Models;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
-
+using System.Text;
 namespace APIs.Controllers
 {
     [Route("api/[controller]/[action]")]
@@ -113,7 +113,7 @@ namespace APIs.Controllers
         [HttpPut()]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult UpdatePersonalInfo(string tokenValue, string address ,string phone_number,byte[] photo)
+        public IActionResult UpdatePersonalInfo(string tokenValue, string address ,string phone_number,string photo)
         {
             DBHelper dBHelper = new DBHelper();
             ////获取到ID 和用户类型
@@ -152,7 +152,7 @@ namespace APIs.Controllers
                 parametersUpdate[0].Value = address ?? Row["ADDRESS"].ToString();
                 parametersUpdate[1].Value = phone_number ?? Row["PHONE_NUMBER"].ToString();
                 //可能存在问题
-                parametersUpdate[2].Value = System.Text.Encoding.UTF8.GetBytes(photo) ?? Row["PHOTO"];
+                parametersUpdate[2].Value = Encoding.UTF8.GetBytes(photo) ?? Row["PHOTO"];
                 parametersUpdate[3].Value = fromTokenUser.UserID;
                 dBHelper.ExecuteNonQuery(sqlUpdate, parametersUpdate);
             }

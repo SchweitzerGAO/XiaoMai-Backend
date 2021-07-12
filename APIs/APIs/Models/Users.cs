@@ -52,6 +52,8 @@ namespace APIs.Models
         public string Address { get; set; }
         public string RegDate { get; set; }
         public string Image { get; set; }
+
+        public string PhoneNumber { get; set; }
         public double Income { get; set; }
     }
 }
