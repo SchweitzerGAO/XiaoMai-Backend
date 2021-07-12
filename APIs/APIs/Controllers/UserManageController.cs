@@ -102,15 +102,18 @@ namespace APIs.Controllers
 
 
 
-        /// <summary>
-        /// 填写基本信息,实现数量可变的参数添加
-        /// </summary>
-        /// <param>token</param>
-        /// <returns></returns>
+      /// <summary>
+      /// 修改基本信息
+      /// </summary>
+      /// <param name="tokenValue">JWT的值</param>
+      /// <param name="address">新地址</param>
+      /// <param name="phone_number">电话</param>
+      /// <param name="photo">头像</param>
+      /// <returns></returns>
         [HttpPut()]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult UpdatePersonalInfo(string tokenValue, string address ,string phone_number,string photo)
+        public IActionResult UpdatePersonalInfo(string tokenValue, string address ,string phone_number,byte[] photo)
         {
             DBHelper dBHelper = new DBHelper();
             ////获取到ID 和用户类型

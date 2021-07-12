@@ -17,7 +17,7 @@ namespace APIs.Controllers
         /// </summary>
         /// <param name="sellerId">商家ID</param>
         /// <returns>周边信息（Json格式）</returns>
-        [HttpGet]
+        [HttpGet("{sellerId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesDefaultResponseType]
