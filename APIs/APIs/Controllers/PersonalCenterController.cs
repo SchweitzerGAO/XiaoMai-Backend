@@ -13,6 +13,12 @@ namespace APIs.Controllers
 
     public class PersonalCenterController : Controller
     {
+
+        /// <summary>
+        /// 显示个人信息
+        /// </summary>
+        /// <param name="info">token</param>
+        /// <returns>个人信息</returns>
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -51,7 +57,7 @@ namespace APIs.Controllers
                 res.Address = row["ADDRESS"].ToString();
                 res.RegDate = row["DATE_OF_REG"].ToString();
                 res.Income = int.Parse(row["EARNING"].ToString());
-                res.Image = dBHelper.GetCustomerBlob(info.ID);
+                res.Image = dBHelper.GetSellerBlob(info.ID);
                 
                 //前端或许需要转码，将图片从Base64转成Image
                 return Ok(dBHelper.ToJson(res));
