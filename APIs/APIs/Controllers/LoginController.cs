@@ -13,6 +13,12 @@ namespace APIs.Controllers
 
     public class LoginController : Controller
     {
+
+        /// <summary>
+        /// 使用ID和密码进行登录
+        /// </summary>
+        /// <param name="login">token</param>
+        /// <returns>是否登录成功</returns>
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
