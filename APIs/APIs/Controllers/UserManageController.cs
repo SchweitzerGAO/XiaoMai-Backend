@@ -152,7 +152,7 @@ namespace APIs.Controllers
                 parametersUpdate[0].Value = address ?? Row["ADDRESS"].ToString();
                 parametersUpdate[1].Value = phone_number ?? Row["PHONE_NUMBER"].ToString();
                 //可能存在问题
-                parametersUpdate[2].Value = photo ?? Row["PHOTO"];
+                parametersUpdate[2].Value = System.Text.Encoding.UTF8.GetBytes(photo) ?? Row["PHOTO"];
                 parametersUpdate[3].Value = fromTokenUser.UserID;
                 dBHelper.ExecuteNonQuery(sqlUpdate, parametersUpdate);
             }
