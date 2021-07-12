@@ -26,7 +26,7 @@ namespace APIs.Controllers
             try
             {
                 var res = new List<SellerInformation>();
-                string querySeller = "SELECT ID ,DAT_OF_REG ,EARNING FROM SELLER WHERE ID = :sellerId AND IS_VALID =1";
+                string querySeller = "SELECT ID ,DATE_OF_REG ,EARNING FROM SELLER WHERE ID = :sellerId AND IS_VALID =1";
                 string querySlot = "SELECT ID FROM SLOT WHERE SELLER_ID=:sellerId AND IS_VALID=1";
                 string queryOrder = "SELECT ID FROM GOODS_ORDER WHERE SELLER_ID = :sellerId";
                 string queryShowOrder = "SELECT ID FROM SHOW_ORDER WHERE SLOT_ID=:slotId";
@@ -42,7 +42,7 @@ namespace APIs.Controllers
                     foreach (DataRow row in dtSeller.Rows)
                     {
                         long sellerIdTmp = long.Parse(row["ID"].ToString());
-                        DateTime dateTime = Convert.ToDateTime(row["DAT_OF_REG"].ToString());//格式
+                        DateTime dateTime = Convert.ToDateTime(row["DATE_OF_REG"].ToString());//格式
                         TimeSpan ts = DateTime.Now - dateTime;
                         long settleday = ts.Days;
                         OracleParameter[] parameterForQuerySlot = { new OracleParameter(":sellerIdTmp", OracleDbType.Long, 10) };
@@ -67,7 +67,7 @@ namespace APIs.Controllers
                             slotAmount=slotamount,
                             orderGoodsAmount=orderamount,
                             orderShowAmount=slotShowAmount,
-                            earnings =long.Parse(row["EARNING"].ToString())
+                            earnings =double.Parse(row["EARNING"].ToString())
                         }) ;
                     }
                     if (res.Count==0)

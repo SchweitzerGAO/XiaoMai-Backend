@@ -9,7 +9,7 @@ namespace APIs.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class MainLoginController : Controller
+    public class MainLoginController : ControllerBase
     {
 
 

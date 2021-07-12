@@ -23,11 +23,19 @@
         public double price { get; set; }           // 价格
         public long available { get; set; }      // 剩余存货
     }
-
-    public class SellerGoods                    // 周边信息（用于商家添加与修改）
+    public class AddGoods                    // 周边信息（用于商家添加）
     {
-        public long id { get; set; }        //周边ID
         public long sellerId { get; set; }  //商家ID
+        public long showId { get; set; }        //演出ID
+        public string goodsName { get; set; }       // 周边名
+        public string description { get; set; }     //周边简介
+        public string goodsPhoto { get; set; }       //周边图片
+        public double price { get; set; }        //价格
+        public long available { get; set; }      //数量
+    }
+    public class UpdateGoods                    // 周边信息（用于商家修改）
+    {
+        public string id { get; set; }              //周边ID
         public double price { get; set; }        //价格
         public long available { get; set; }      //数量
     }

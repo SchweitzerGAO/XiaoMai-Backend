@@ -28,7 +28,7 @@ namespace APIs.Controllers
                 var res = new List<ParticularGoods>();
                 string query = "SELECT SELLER_NAME,PRICE,AVAILABLE " +
                     "FROM SELLER_GOODS JOIN SELLER ON ID = SELLER_ID " +
-                    "WHERE SELLER_GOODS.IS_VALID = 1 AND SELLER.IS_VALID = 1 AND GOODS_ID =:goodsId AND AVAILABLE>0";
+                    "WHERE SELLER.IS_VALID = 1 AND GOODS_ID =:goodsId AND AVAILABLE>0";
                 OracleParameter[] parameterForQuery = { new OracleParameter(":goodsId", OracleDbType.Long, 10) };
                 parameterForQuery[0].Value = goodsId;
                 DataTable dt = dbHelper.ExecuteTable(query, parameterForQuery);

@@ -54,7 +54,7 @@ namespace APIs.Controllers
                     parametersForInsertSlot[7].Value = map;
                     parametersForInsertSlot[8].Value = allSlot.day;
                     dbHelper.ExecuteNonQuery(insertSlotStr, parametersForInsertSlot);//增加场次
-                    char isAvailable = '1';
+                    int isAvailable = 1;
                     string insertAreaStr = "INSERT INTO AREA VALUES(:slotId,:areaName,:price,:available)";
                     string insertSeatStr = "INSERT INTO SEAT VALUES(:slotId,:area,:seatNumber,:isAvailable)";
 
@@ -80,12 +80,12 @@ namespace APIs.Controllers
                         new OracleParameter(":slotId", OracleDbType.Long, 10),
                         new OracleParameter(":area", OracleDbType.Varchar2),
                         new OracleParameter(":seatNumber", OracleDbType.Long ),
-                        new OracleParameter(":isAvailable", OracleDbType.Char )
-                    };
-                        parametersForInsertArea[0].Value = id;
-                        parametersForInsertArea[1].Value = allSlot.areas[i].name;
-                        parametersForInsertArea[2].Value = ++seat;
-                        parametersForInsertArea[3].Value = isAvailable;
+                        new OracleParameter(":isAvailable", OracleDbType.Long )
+                        };
+                        parametersForInsertSeat[0].Value = id;
+                        parametersForInsertSeat[1].Value = allSlot.areas[i].name;
+                        parametersForInsertSeat[2].Value = ++seat;
+                        parametersForInsertSeat[3].Value = isAvailable;
                         dbHelper.ExecuteNonQuery(insertSeatStr, parametersForInsertSeat);
                     }
                 }

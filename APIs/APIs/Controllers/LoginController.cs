@@ -12,7 +12,7 @@ namespace APIs.Controllers
     [ApiController]
 
 
-    public class LoginController : Controller
+    public class LoginController : ControllerBase
     {
 
         /// <summary>

@@ -12,7 +12,7 @@ namespace APIs.Controllers
     [ApiController]
 
 
-    public class PersonalCenterController : Controller
+    public class PersonalCenterController : ControllerBase
     {
 
         /// <summary>

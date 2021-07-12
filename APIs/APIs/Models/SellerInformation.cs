@@ -11,7 +11,7 @@ namespace APIs.Models
         public long slotAmount { get; set; }          //场次数量
         public long orderGoodsAmount { get; set; }    //商品订单数量
         public long orderShowAmount { get; set; }     //演出订单数量
-        public long earnings { get; set; }            //收入
+        public double earnings { get; set; }            //收入
 
     }
 }
