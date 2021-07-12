@@ -1,6 +1,7 @@
 using APIs.DBUtility;
 using APIs.Models;
 using Microsoft.AspNetCore.Mvc;
+using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
 
@@ -26,38 +27,48 @@ namespace APIs.Controllers
         public IActionResult Login(Login login)
         {
             DBHelper dBHelper = new DBHelper();
-
-            //登录方式为ID+密码
-            string sqlQueryPW = @"SELECT PASSWORD FROM " + login.UserType + @" WHERE ID =" + login.ID;
-            DataTable table = dBHelper.ExecuteTable(sqlQueryPW);
-            DataRow Row = table.Rows[0];
-            if (Row["PASSWORD"] != null)
+            try
             {
-                if (Row["PASSWORD"].ToString() == login.Password)
+                //登录方式为ID+密码
+                string sqlQueryPW = @"SELECT PASSWORD,IS_VALID FROM " + login.UserType + @" WHERE ID = " + login.ID;
+                DataTable table = dBHelper.ExecuteTable(sqlQueryPW);
+                if (table.Rows.Count != 0)
                 {
-                    JWTPayload jwt = new JWTPayload();
-                    jwt.UserID = login.ID;
-                    switch (login.UserType)
+                    DataRow Row = table.Rows[0];
+                    if (Row["PASSWORD"].ToString() == login.Password)
                     {
-                        case "ADMIN":
-                            jwt.UserType = 0;
-                            break;
-                        case "CUSTOMER":
-                            jwt.UserType = 1;
-                            break;
-                        case "SELLER":
-                            jwt.UserType = 2;
-                            break;
-                        default:
-                            break;
+                        if (Row["IS_VALID"].ToString() == "1")
+                        {
+                            JWTPayload jwt = new JWTPayload();
+                            jwt.UserID = login.ID;
+                            switch (login.UserType)
+                            {
+                                case "ADMIN":
+                                    jwt.UserType = 0;
+                                    break;
+                                case "CUSTOMER":
+                                    jwt.UserType = 1;
+                                    break;
+                                case "SELLER":
+                                    jwt.UserType = 2;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            return Ok(JWTHelper.SetJwtEncode(jwt));
+                        }
+                        else
+                            return BadRequest("该账号已被封禁！");
                     }
-                    return Ok(JWTHelper.SetJwtEncode(jwt));
+                    else
+                        return BadRequest("账号与密码不符");
                 }
-                else
-                    return BadRequest("账号与密码不符");
+                return BadRequest("账号不存在");
             }
-            return BadRequest("账号不存在");
-
+            catch (OracleException oe)
+            {
+                return BadRequest("数据库请求出错"+oe.Number.ToString());
+            }
 
         }
         
