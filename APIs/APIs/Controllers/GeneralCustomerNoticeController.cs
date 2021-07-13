@@ -16,6 +16,9 @@ namespace APIs.Controllers
         /// </summary>
         /// <returns>顾客的所有通知</returns>
         [HttpGet]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(200)]
         public IActionResult getAllCustomerNotice()
         {
             DBHelper dbHelper = new DBHelper();

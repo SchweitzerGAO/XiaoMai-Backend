@@ -9,11 +9,20 @@
         public ulong id { get; set; }        // 通知ID
         public string time { get; set; }    // 通知时间
         public string title { get; set; }   // 通知标题
+        public string type { get; set; }    //TYPE属性
+        public string content { get; set; }     //通知内容
+
     }
-    public class NoticeContent      //收到的通知包括的信息
+    public class NoticeContent      // 收到的通知包括的信息
     {
         public string time { get; set; }    // 通知时间
         public string title { get; set; }   // 通知标题
         public string content { get; set; }     //通知内容
+    }
+    public class BroadcastNotice   // 发布通知
+    {
+        public string title { get; set; }
+        public string content { get; set; }
+        public int type { get; set; }
     }
 }
