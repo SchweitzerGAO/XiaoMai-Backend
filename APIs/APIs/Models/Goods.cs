@@ -1,5 +1,17 @@
 ﻿namespace APIs.Models
 {
+    public class queryParam
+    {
+        public long sellerId { get; set; }
+        public long goodsId { get; set; }
+
+    }
+    public class GoodsInfo
+    {
+        public string name { get; set; }
+        public double price { get; set; }
+        public long available { get; set; }
+    }
     public class GeneralGoods               // 总体周边信息
     {
         public long id { get; set; }        // 周边ID
@@ -10,10 +22,12 @@
     }
     public class ParticularGoods                 // 详细周边信息
     {
-
+        public long sellerId { get; set; }
+        public string goodsName { get; set; }
         public string sellerName { get; set; }   // 商家名称
         public double price { get; set; }        // 价格
         public long available { get; set; }      // 剩余存货
+        public string image { get; set; }        
 
     }
     public class GoodsResult                  //商家查看自己的周边时返回的结果
@@ -28,7 +42,6 @@
         public long sellerId { get; set; }  //商家ID
         public long showId { get; set; }        //演出ID
         public string goodsName { get; set; }       // 周边名
-        public string description { get; set; }     //周边简介
         public string goodsPhoto { get; set; }       //周边图片
         public double price { get; set; }        //价格
         public long available { get; set; }      //数量

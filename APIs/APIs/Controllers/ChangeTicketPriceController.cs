@@ -18,7 +18,7 @@ namespace APIs.Controllers
         [HttpPut]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult changeTickerPrice(long slotId ,string areaName ,long price)
+        public IActionResult changeTickerPrice(long slotId ,string areaName ,double price)
         {
             DBHelper dbHelper = new DBHelper();
             try
@@ -26,7 +26,7 @@ namespace APIs.Controllers
                 string updateTicketPriceStr = "UPDATE AREA SET PRICE = :price WHERE SLOT_ID =:slotId AND AREA_NAME =:areaName";
                 OracleParameter[] parametersForUpdateTicketPrice =
                 {
-                    new OracleParameter(":price",OracleDbType.Long),
+                    new OracleParameter(":price",OracleDbType.Double),
                     new OracleParameter(":slotId",OracleDbType.Long),
                     new OracleParameter(":areaName",OracleDbType.Varchar2 )
                 };

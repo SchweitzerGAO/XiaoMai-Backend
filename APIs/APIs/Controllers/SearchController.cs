@@ -47,20 +47,21 @@ namespace APIs.Controllers
                     foreach (DataRow row in dtShow.Rows)
                     {
                         long id = long.Parse(row["ID"].ToString());
-                        res.labels = LabelController.getLabelByShow(id);
                         string queryAvgRate = "SELECT AVG(RATE) RATE FROM COMM WHERE SHOW_ID = :showId GROUP BY SHOW_ID";
                         OracleParameter[] parameterForAvgRate = { new OracleParameter(":showId", OracleDbType.Long, 10) };
                         parameterForAvgRate[0].Value = id;
                         DataTable dtAvgRate = dbHelper.ExecuteTable(queryAvgRate, parameterForAvgRate);
                         res.shows.Add(new GeneralShow()
                         {
+
+                            labels = LabelController.getLabelByShow(id),
                             showId = id,
                             image = row["PHOTO"].ToString() == string.Empty ? null : Convert.ToBase64String((byte[])(row["PHOTO"])),
                             name = row["NAME"].ToString(),
-                            avgRate = dtAvgRate.Rows.Count != 0 ? double.Parse(dtAvgRate.Rows[0]["RATE"].ToString()) : null,
-                            
-                            
-                        }) ;
+                            avgRate = dtAvgRate.Rows.Count != 0 ? double.Parse(dtAvgRate.Rows[0]["RATE"].ToString()) : null
+
+
+                        });
                     }
 
                     // 查询周边信息

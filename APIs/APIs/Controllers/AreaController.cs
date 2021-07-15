@@ -29,9 +29,10 @@ namespace APIs.Controllers
                 DataTable dtArea = dbHelper.ExecuteTable(queryAreas, parameterForQueryAreas);
                 foreach(DataRow rowArea in dtArea.Rows)
                 {
-                    string querySeats = "SELECT SEAT_NUMBER FROM SEAT WHERE AREA = :areaName AND IS_AVAILABLE = 1";
-                    OracleParameter[] parameterForQuerySeats = { new OracleParameter("areaName", OracleDbType.Varchar2) };
+                    string querySeats = "SELECT SEAT_NUMBER FROM SEAT WHERE AREA = :areaName AND IS_AVAILABLE = 1 AND SLOT_ID = :slotId";
+                    OracleParameter[] parameterForQuerySeats = { new OracleParameter("areaName", OracleDbType.Varchar2) ,new OracleParameter(":slotId",OracleDbType.Long,10)};
                     parameterForQuerySeats[0].Value = rowArea["AREA_NAME"].ToString();
+                    parameterForQuerySeats[1].Value = slotId;
                     DataTable dtSeat = dbHelper.ExecuteTable(querySeats, parameterForQuerySeats);
                     List<int> seats = new List<int>();
                     foreach(DataRow rowSeat in dtSeat.Rows)

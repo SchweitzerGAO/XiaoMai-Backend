@@ -32,11 +32,21 @@ namespace APIs.Controllers
                 {
                     return NotFound("暂无场次");
                 }
-                string query = "SELECT MAP FROM SLOT WHERE ID = :slotId";
+                string query = "SELECT MAP,SELLER_ID,SHOW_ID FROM SLOT WHERE ID = :slotId";
                 OracleParameter[] parameterForQuery = { new OracleParameter(":slotId", OracleDbType.Long, 10) };
                 parameterForQuery[0].Value = slotId;
+                
                 DataTable dt = dbHelper.ExecuteTable(query, parameterForQuery);
                 res.map = dt.Rows[0]["MAP"].ToString() == string.Empty ? null : Convert.ToBase64String((byte[])(dt.Rows[0]["MAP"]));
+                res.sellerId = long.Parse(dt.Rows[0]["SELLER_ID"].ToString());
+                long showId = long.Parse(dt.Rows[0]["SHOW_ID"].ToString());
+                string queryName = "SELECT NAME FROM SHOW WHERE ID=:showId";
+                OracleParameter[] parameterForQueryName = { new OracleParameter(":showId", OracleDbType.Long, 10) };
+                parameterForQueryName[0].Value = showId;
+                DataTable dtForName = dbHelper.ExecuteTable(queryName, parameterForQueryName);
+                string name = dtForName.Rows[0]["NAME"].ToString();
+                res.showName = name;
+                
                 return Ok(new JsonResult(res));
 
             }
@@ -68,10 +78,10 @@ namespace APIs.Controllers
                 string updateArea = "UPDATE AREA SET AVAILABLE= AVAILABLE-1 WHERE SLOT_ID = :slotId AND AREA_NAME=:area";
 
                 // 更改座位信息
-                string updateSeat = "UPDATE SEAT SET AVAILABLE = 0 WHERE SLOT_ID = :slotId AND AREA=:area AND SEAT_NUMBER =:number";
+                string updateSeat = "UPDATE SEAT SET IS_AVAILABLE = 0 WHERE SLOT_ID = :slotId AND AREA=:area AND SEAT_NUMBER =:seatNumber";
 
                 // 更改收入信息
-                string updateEarning = "UPDATE SELLER SET EARNING = EARNING+:money WHERE SELLER_ID = :sellerId";
+                string updateEarning = "UPDATE SELLER SET EARNING = EARNING+:money WHERE ID = :sellerId";
 
                 // 返回信息（购买件数以及积分增加）
                 int res = 0;
@@ -119,11 +129,11 @@ namespace APIs.Controllers
                     {
                         new OracleParameter(":slotId",OracleDbType.Long,10),
                         new OracleParameter(":area",OracleDbType.Varchar2,50),
-                        new OracleParameter(":number",OracleDbType.Long,10),
+                        new OracleParameter(":seatNumber",OracleDbType.Long,10),
                     };
-                    parametersForUpdateArea[0].Value = order.slotId;
-                    parametersForUpdateArea[1].Value = order.areaName;
-                    parametersForUpdateArea[2].Value = order.seatNumber;
+                    parametersForUpdateSeat[0].Value = order.slotId;
+                    parametersForUpdateSeat[1].Value = order.areaName;
+                    parametersForUpdateSeat[2].Value = order.seatNumber;
                     dbHelper.ExecuteNonQuery(updateSeat, parametersForUpdateSeat);
 
                     // 收入信息修改

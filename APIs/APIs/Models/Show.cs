@@ -8,6 +8,7 @@ namespace APIs.Models
         public string name { get; set; }     // 演出名称
         public string image { get; set; }    // 演出图片
         public double? avgRate { get; set; } // 平均评分
+        public List<string> labels { get; set; }
     }
     public class ParticularShow
     {
@@ -16,5 +17,9 @@ namespace APIs.Models
         public List<GeneralGoods> goods { get; set; }          // 所有周边
         public List<CommentCustomer> comments { get; set; }    // 所有评论
         public List<string> labels { get; set; }               // 所有标签
+        public string name { get; set; }
+        public double? avgRate { get; set; }
+        public string image { get; set; }
     }
+
 }

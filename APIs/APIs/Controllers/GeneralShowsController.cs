@@ -42,11 +42,14 @@ namespace APIs.Controllers
                 {
                     foreach (DataRow row in dtShow.Rows)
                     {
+                        long id = long.Parse(row["ID"].ToString());
                         res.Add(new GeneralShow()
                         {
-                            showId = long.Parse(row["ID"].ToString()),
+                            showId = id,
                             name = row["NAME"].ToString(),
-                            image = row["PHOTO"].ToString() == string.Empty ? null : Convert.ToBase64String((byte[])(row["PHOTO"]))
+                            image = row["PHOTO"].ToString() == string.Empty ? null : Convert.ToBase64String((byte[])(row["PHOTO"])),
+                            labels = LabelController.getLabelByShow(id)
+                            
 
                         });
                     }

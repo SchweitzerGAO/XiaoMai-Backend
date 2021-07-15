@@ -13,15 +13,6 @@ namespace APIs.Controllers
     [ApiController]
     public class GoodsController:ControllerBase
     {
-        private IActionResult BadRequest(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        private IActionResult Ok(string v)
-        {
-            throw new NotImplementedException();
-        }
 
 
 
@@ -31,13 +22,16 @@ namespace APIs.Controllers
         /// <param name="goods">周边信息</param>
         /// <returns>添加结果</returns>
         [HttpPost]
-        public IActionResult addGoods(AddGoods goods)        //首先查找要添加的周边关联的演出ID是否是本商家的，然后利用主码自增添加周边到GOODS表，再将每个生成的ID对应的周边的价格和库存加到SELLER_GOODS表
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult addGoods(AddGoods goods)        // 首先查找要添加的周边关联的演出ID是否是本商家的，然后利用主码自增添加周边到GOODS表，再将每个生成的ID对应的周边的价格和库存加到SELLER_GOODS表
         {
             try
             {
                 //首先查找要添加的周边关联的演出ID是否已在本商家发布的场次中
                 DBHelper dbHelper = new DBHelper();
-                string query = "SELECT * FROM SLOT WHERE SHOW_ID=:showId AND SELLER_ID=:sellerId";
+                string query = "SELECT * FROM SLOT WHERE SHOW_ID=:showId AND SELLER_ID=:sellerId AND IS_VALID = 1";
                 OracleParameter[] parameterForQuery =
                 {
                     new OracleParameter(":showId", OracleDbType.Long,10) ,
@@ -56,14 +50,13 @@ namespace APIs.Controllers
                     ulong id = dbHelper.ExecuteMax("GOODS");        //利用主码自增生成周边id
                     id++;
 
-                    string insert_into_goods = "INSERT INTO GOODS VALUES(:id,:goodsName,:showId,:is_valid,:discription,:photo)";
+                    string insert_into_goods = "INSERT INTO GOODS VALUES(:id,:goodsName,:showId,:is_valid,:photo)";
                     OracleParameter[] parametersForInsertIntoGoods =
                     {
                     new OracleParameter(":id",OracleDbType.Long,10),
                     new OracleParameter(":goodsName",OracleDbType.Varchar2,10),
                     new OracleParameter(":showId",OracleDbType.Long,10),
-                    new OracleParameter(":is_valid",OracleDbType.Byte,1),
-                    new OracleParameter(":desccription",OracleDbType.Clob),
+                    new OracleParameter(":is_valid",OracleDbType.Long,1),
                     new OracleParameter(":photo",OracleDbType.Blob)
                     };
 
@@ -71,9 +64,8 @@ namespace APIs.Controllers
                     parametersForInsertIntoGoods[1].Value = goods.goodsName;
                     parametersForInsertIntoGoods[2].Value = goods.showId;
                     parametersForInsertIntoGoods[3].Value = 1;     //添加时默认有效位为1
-                    parametersForInsertIntoGoods[4].Value = goods.description;
                     byte[] blob = System.Text.Encoding.Default.GetBytes(goods.goodsPhoto);
-                    parametersForInsertIntoGoods[5].Value = blob;
+                    parametersForInsertIntoGoods[4].Value = blob;
 
                     dbHelper.ExecuteNonQuery(insert_into_goods, parametersForInsertIntoGoods);
 

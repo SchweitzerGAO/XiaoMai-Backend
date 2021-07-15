@@ -29,7 +29,7 @@ namespace APIs.Controllers
                 var res = new List<GoodsResult>();
 
                 // 查询语句
-                string queryGoodsID = "SELECT * FROM SELLER_GOODS WHERE SELLER_ID =:sellerId AND IS_VALID='1'";       //注意惰性删除的情况，有效位为0的不显示
+                string queryGoodsID = "SELECT * FROM SELLER_GOODS WHERE SELLER_ID =:sellerId";       //注意惰性删除的情况，有效位为0的不显示
                 string queryGoodsName = "SELECT NAME FROM GOODS WHERE ID=:goodsId";
 
                 OracleParameter[] parameterForQueryGoodsID = { new OracleParameter(":sellerId", OracleDbType.Long, 10) };       //将sellerId作为参数传入

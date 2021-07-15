@@ -88,8 +88,8 @@ namespace APIs.Controllers
                 string querySeller = "SELECT SELLER_ID FROM SLOT WHERE ID =:slotId";
                 string delete = "DELETE FROM SHOW_ORDER WHERE ID =:orderId";
                 string updateArea = "UPDATE AREA SET AVAILABLE = AVAILABLE+1 WHERE SLOT_ID=:slotId AND AREA_NAME =:area";
-                string updateSeat = "UPDATE SEAT SET AVAILABLE = 1 WHERE SLOT_ID = :slotId AND AREA=:area AND SEAT_NUMBER =:number";
-                string updateEarning = "UPDATE SELLER SET EARNING = EARNING-:money WHERE SELLER_ID = :sellerId";
+                string updateSeat = "UPDATE SEAT SET IS_AVAILABLE = 1 WHERE SLOT_ID = :slotId AND AREA=:area AND SEAT_NUMBER =:seatNumber";
+                string updateEarning = "UPDATE SELLER SET EARNING = EARNING-:money WHERE ID = :sellerId";
 
                 // 保存订单信息
                 OracleParameter[] parameterForOrder = { new OracleParameter(":orderId", OracleDbType.Long, 20) };
@@ -119,7 +119,7 @@ namespace APIs.Controllers
                 {
                      new OracleParameter(":slotId",OracleDbType.Long,20),
                      new OracleParameter(":area",OracleDbType.Varchar2,50),
-                     new OracleParameter(":number",OracleDbType.Long,10),
+                     new OracleParameter(":seatNumber",OracleDbType.Long,10),
                 };
                 parametersForUpdateSeat[0].Value = ulong.Parse(dtOrder.Rows[0]["SLOT_ID"].ToString());
                 parametersForUpdateSeat[1].Value = dtOrder.Rows[0]["AREA"].ToString();

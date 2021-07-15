@@ -5,7 +5,6 @@ using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
 
-
 namespace APIs.Controllers
 {
     [Route("api/[controller]")]

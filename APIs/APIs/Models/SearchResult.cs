@@ -6,6 +6,5 @@ namespace APIs.Models
     {
         public List<GeneralShow> shows { get; set; }  // 演出
         public List<GeneralGoods> goods { get; set; } // 周边
-        public List<string> labels { get; set; }      // 标签
     }
 }

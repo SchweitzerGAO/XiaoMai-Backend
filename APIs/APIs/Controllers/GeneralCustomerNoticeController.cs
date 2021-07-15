@@ -25,7 +25,7 @@ namespace APIs.Controllers
             try
             {
                 var res = new List<GeneralNotice>();
-                string query = "SELECT ID,TIME,TITLE FROM NOTICE WHERE TYPE = 0 OR TYPE = 1 ";
+                string query = "SELECT ID,TIME,TITLE,CONTENT FROM NOTICE WHERE TYPE = 0 OR TYPE = 1 ";
                 DataTable dt = dbHelper.ExecuteTable(query);
                 if(dt.Rows.Count == 0)
                 {
@@ -39,8 +39,9 @@ namespace APIs.Controllers
                         {
                             id = ulong.Parse(row["ID"].ToString()),
                             time = row["TIME"].ToString(),
-                            title = row["TITLE"].ToString()
-                        });
+                            title = row["TITLE"].ToString(),
+                            content = row["CONTENT"].ToString()
+                        }) ;
                     }
                     return Ok(new JsonResult(res));
                 }

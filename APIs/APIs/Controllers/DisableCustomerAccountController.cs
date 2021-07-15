@@ -56,7 +56,7 @@ namespace APIs.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut("{customerId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

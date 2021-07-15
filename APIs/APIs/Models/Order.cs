@@ -18,6 +18,7 @@
         public long goodsId { get; set; }           // 周边ID
         public string goodsName { get; set; }       // 周边名称
         public double price { get; set; }           // 周边价格
+        public long number { get; set; }
     }
    
 }

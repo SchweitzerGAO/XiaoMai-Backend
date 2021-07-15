@@ -26,20 +26,28 @@ namespace APIs.Controllers
             try
             {
                 var res = new List<ParticularGoods>();
-                string query = "SELECT SELLER_NAME,PRICE,AVAILABLE " +
+                string queryGoods = "SELECT SELLER_NAME,PRICE,AVAILABLE,SELLER_ID " +
                     "FROM SELLER_GOODS JOIN SELLER ON ID = SELLER_ID " +
                     "WHERE SELLER.IS_VALID = 1 AND GOODS_ID =:goodsId AND AVAILABLE>0";
+                string queryImage = "SELECT PHOTO FROM GOODS WHERE ID =:goodsId";
                 OracleParameter[] parameterForQuery = { new OracleParameter(":goodsId", OracleDbType.Long, 10) };
                 parameterForQuery[0].Value = goodsId;
-                DataTable dt = dbHelper.ExecuteTable(query, parameterForQuery);
-                foreach (DataRow row in dt.Rows)
+                string queryName = "SELECT NAME FROM GOODS WHERE ID=:goodsId";
+                DataTable dtForGoods = dbHelper.ExecuteTable(queryGoods, parameterForQuery);
+                DataTable dtForName = dbHelper.ExecuteTable(queryName, parameterForQuery);
+                DataTable dtForImage = dbHelper.ExecuteTable(queryImage, parameterForQuery);
+                string name = dtForName.Rows[0]["NAME"].ToString();
+                foreach (DataRow row in dtForGoods.Rows)
                 {
                     res.Add(new ParticularGoods()
                     {
                         sellerName = row["SELLER_NAME"].ToString(),
                         price = double.Parse(row["PRICE"].ToString()),
-                        available = long.Parse(row["AVAILABLE"].ToString())
-                    });
+                        available = long.Parse(row["AVAILABLE"].ToString()),
+                        sellerId = long.Parse(row["SELLER_ID"].ToString()),
+                        goodsName = name,
+                        image =  dtForImage.Rows[0]["PHOTO"].ToString() == string.Empty ? null : Convert.ToBase64String((byte[])(dtForImage.Rows[0]["PHOTO"]))
+                });
                 }
                 return Ok(new JsonResult(res));
 
@@ -53,28 +61,28 @@ namespace APIs.Controllers
         /// <summary>
         /// 购买周边
         /// </summary>
-        /// <param name="orders">周边订单数组</param>
+        /// <param name="order">周边订单数组</param>
         /// <returns>状态码</returns>
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult newGoodsOrder(GoodsOrder[] orders)
+        public IActionResult newGoodsOrder(GoodsOrder order)
         {
             DBHelper dbHelper = new DBHelper();
             try
             {
                 // 检查顾客是否为VIP
-                VIP check = VipController.checkVip(orders[0].customerId);
+                VIP check = VipController.checkVip(order.customerId);
 
                 // 添加订单
                 string insert = "INSERT INTO GOODS_ORDER VALUES(:id,:customerId,:sellerId,:goodsName,:price,:payTime,:goodsId)";
 
                 // 返回信息（购买件数以及积分增加）
-                int res = 0;
+                long res = order.number;
                 double point = 0;
-                foreach (GoodsOrder order in orders)
-                {
                     order.price *= (check == null ? 1 : check.discount);
+                    for(long i = 0;i<order.number;i++)
+                    {
                     OracleParameter[] parametersForInsert =
                     {
                         new OracleParameter(":id",OracleDbType.Varchar2,50),
@@ -94,9 +102,9 @@ namespace APIs.Controllers
                     parametersForInsert[5].Value = DateTime.Now.ToLocalTime().ToString("G");
                     parametersForInsert[6].Value = order.goodsId;
                     dbHelper.ExecuteNonQuery(insert, parametersForInsert);
-                    point += order.price;
+                   }
+                    point += (order.price*order.number);
                     ++res;
-                }
 
                 // 卖（存货、收入数据更新）
                 
@@ -108,9 +116,9 @@ namespace APIs.Controllers
                     new OracleParameter(":sellerId",OracleDbType.Long,10),
                     new OracleParameter(":goodsId",OracleDbType.Long,10)
                 };
-                parametersForUpdateGoods[0].Value = orders.Length;
-                parametersForUpdateGoods[1].Value = orders[0].sellerId;
-                parametersForUpdateGoods[2].Value = orders[0].goodsId;
+                parametersForUpdateGoods[0].Value = order.number;
+                parametersForUpdateGoods[1].Value = order.sellerId;
+                parametersForUpdateGoods[2].Value = order.goodsId;
                 dbHelper.ExecuteNonQuery(updateGoods, parametersForUpdateGoods);
 
                 // 收入更新
@@ -120,8 +128,8 @@ namespace APIs.Controllers
                     new OracleParameter(":money",OracleDbType.Double),
                     new OracleParameter(":sellerId",OracleDbType.Long,10)
                 };
-                parametersForUpdateEarning[0].Value = orders[0].price * orders.Length;
-                parametersForUpdateEarning[1].Value = orders[0].sellerId;
+                parametersForUpdateEarning[0].Value = order.price * order.number;
+                parametersForUpdateEarning[1].Value = order.sellerId;
                 dbHelper.ExecuteNonQuery(updateEarning, parametersForUpdateEarning);
 
                 // 积分
@@ -131,7 +139,7 @@ namespace APIs.Controllers
                 }
                 else
                 {
-                    VipController.updateVip(orders[0].customerId, point);
+                    VipController.updateVip(order.customerId, point);
                     return Ok("购买成功,已购" + res.ToString() + "件商品\n"+"积分增加"+point.ToString());
                 }
             }
