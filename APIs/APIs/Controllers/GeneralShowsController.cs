@@ -56,7 +56,16 @@ namespace APIs.Controllers
                     foreach(DataRow row in dtAvgRate.Rows)
                     {
                         long id = long.Parse(row["SHOW_ID"].ToString());
-                        res[(int)id - 1].avgRate = double.Parse(row["AVG_RATE"].ToString());
+                        long idx = 0;
+                        for(int i = 0;i<res.Count;i++)
+                        {
+                            if(res[i].showId == id)
+                            {
+                                idx = i;
+                                break;
+                            }
+                        }
+                        res[(int)idx].avgRate = double.Parse(row["AVG_RATE"].ToString());
                     }
                     return Ok(new JsonResult(res));
                 }

@@ -34,8 +34,9 @@ namespace APIs
             option.AddPolicy(MyAllowSpecificOrigins, policy =>
             policy.WithOrigins("http://192.168.43.119:8080",
             "http://localhost:8080",
-            "http://172.20.10.5:8080")
-            .WithHeaders(HeaderNames.ContentType, "Access-Control-Allow-Headers")));
+            "http://172.20.10.5:8080","http://8.140.12.78:8080")
+            .WithHeaders(HeaderNames.ContentType, "Access-Control-Allow-Headers")
+            .WithMethods("PUT", "DELETE", "GET", "POST", "PATCH")));
 
         }
 

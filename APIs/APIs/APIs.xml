@@ -51,6 +51,13 @@
             <param name="showId"></param>
             <returns>演出所有评论</returns>
         </member>
+        <member name="M:APIs.Controllers.DeleteGoodsController.DeleteGoods(System.Int64)">
+            <summary>
+            商家下架周边
+            </summary>
+            <param name="goodsId">周边ID</param>
+            <returns>是否删除成功</returns>
+        </member>
         <member name="M:APIs.Controllers.GeneralCustomerNoticeController.getAllCustomerNotice">
             <summary>
             顾客获取所有通知
@@ -80,24 +87,12 @@
             <param name="showId">演出ID</param>
             <returns>所有场次信息</returns>
         </member>
-        <member name="M:APIs.Controllers.GoodsController.addGoods(APIs.Models.SellerGoods)">
+        <member name="M:APIs.Controllers.GoodsController.addGoods(APIs.Models.AddGoods)">
             <summary>
             添加周边
             </summary>
             <param name="goods">周边信息</param>
-        </member>
-        <member name="M:APIs.Controllers.GoodsController.updateGoods(APIs.Models.SellerGoods)">
-            <summary>
-            商家更改周边的数量和价格
-            </summary>
-            <param name="goods">周边信息</param>
-        </member>
-        <member name="M:APIs.Controllers.GoodsController.deleteGoods(System.Int64,System.Int64)">
-            <summary>
-            商家下架周边
-            </summary>
-            <param name="sellerId">商家ID</param>
-            <param name="goodsId">周边ID</param>
+            <returns>添加结果</returns>
         </member>
         <member name="M:APIs.Controllers.GoodsOrderController.getGoodsOrders(System.Int64)">
             <summary>
@@ -119,6 +114,20 @@
             <param name="showId">演出ID</param>
             <returns>该演出的标签信息</returns>
         </member>
+        <member name="M:APIs.Controllers.LoginController.Login(APIs.Models.Login)">
+            <summary>
+            使用ID和密码进行登录
+            </summary>
+            <param name="login">token</param>
+            <returns>是否登录成功</returns>
+        </member>
+        <member name="M:APIs.Controllers.MainLoginController.CheckToken(System.String)">
+            <summary>
+            获取检测Token并尝试登录
+            </summary>
+            <param name="_token">token</param>
+            <returns>是否登录成功</returns>
+        </member>
         <member name="M:APIs.Controllers.ParticularGoodsController.getParticularGoodsById(System.Int64)">
             <summary>
             查看某周边的详细信息
@@ -126,11 +135,11 @@
             <param name="goodsId"> 周边ID</param>
             <returns>所有售卖此周边的商家、价格以及剩余数量</returns>
         </member>
-        <member name="M:APIs.Controllers.ParticularGoodsController.newGoodsOrder(APIs.Models.GoodsOrder[])">
+        <member name="M:APIs.Controllers.ParticularGoodsController.newGoodsOrder(APIs.Models.GoodsOrder)">
             <summary>
             购买周边
             </summary>
-            <param name="orders">周边订单数组</param>
+            <param name="order">周边订单数组</param>
             <returns>状态码</returns>
         </member>
         <member name="M:APIs.Controllers.ParticularNoticeController.getParticularNoticeById(System.UInt64)">
@@ -160,6 +169,13 @@
             </summary>
             <param name="orders">订单</param>
             <returns>状态码</returns>
+        </member>
+        <member name="M:APIs.Controllers.PersonalCenterController.GetAllInformation(APIs.Models.PersonalCenter)">
+            <summary>
+            显示个人信息
+            </summary>
+            <param name="info">token</param>
+            <returns>个人信息</returns>
         </member>
         <member name="M:APIs.Controllers.SearchController.getSearchResult(System.String)">
             <summary>
@@ -202,6 +218,12 @@
             <returns>注册成功的用户名ID</returns>
             <!--注册用户类的UserType应当限定在SELLER 以及 CUSTOMER 以内-->
         </member>
+        <member name="M:APIs.Controllers.UpdateGoodsController.updateGoods(APIs.Models.UpdateGoods)">
+            <summary>
+            商家更改周边的数量和价格
+            </summary>
+            <param name="goods">周边信息</param>
+        </member>
         <member name="M:APIs.Controllers.UserManageController.ResetPassword(System.String,System.String,System.String)">
             <summary>
             重置密码
@@ -220,9 +242,12 @@
         </member>
         <member name="M:APIs.Controllers.UserManageController.UpdatePersonalInfo(System.String,System.String,System.String,System.String)">
             <summary>
-            填写基本信息,实现数量可变的参数添加
+            修改基本信息
             </summary>
-            <param>token</param>
+            <param name="tokenValue">JWT的值</param>
+            <param name="address">新地址</param>
+            <param name="phone_number">电话</param>
+            <param name="photo">头像</param>
             <returns></returns>
         </member>
         <member name="M:APIs.Controllers.VipController.newVip(System.Nullable{System.Int64})">
